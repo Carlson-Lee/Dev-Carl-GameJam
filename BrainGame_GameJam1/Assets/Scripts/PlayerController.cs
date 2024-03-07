@@ -26,14 +26,11 @@ public class PlayerController : MonoBehaviour
     {
         //Set initial movement values
         movementSpeed = 1f;
-        collisionOffset = 0.05f; //Gap between player and collision object
+        collisionOffset = 0f; //Gap between player and collision object
 
         //Set values for movement limits over time
         moveThreshold = movementSpeed * Time.fixedDeltaTime;   //Move along path with velocity (= ..speed/..time)
         moveThresholdOffset = moveThreshold + collisionOffset; //Check movement path (extended) for collisions
-
-        //Sets layer mask for collision objects
-        movementFilter.layerMask = default;
 
         //References for Rigidbody2D and storing collision data
         rb = GetComponent<Rigidbody2D>();
