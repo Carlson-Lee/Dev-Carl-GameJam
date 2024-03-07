@@ -12,6 +12,11 @@ public class PlayerController : MonoBehaviour
     public float moveThreshold;
     public float moveThresholdOffset;
 
+    [Header("Animation Variables")]
+    private PlayerStates currentState; //Check for current animation needed
+    public SpriteRenderer sr;
+    public Animator animator;
+
     [Header("Filters")]
     public ContactFilter2D movementFilter; 
 
@@ -35,6 +40,8 @@ public class PlayerController : MonoBehaviour
         //References for Rigidbody2D and storing collision data
         rb = GetComponent<Rigidbody2D>();
         castCollisions = new List<RaycastHit2D>();
+        animator = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     //Handles player inputs to move position
@@ -107,6 +114,79 @@ public class PlayerController : MonoBehaviour
                     canMove = TryMove(new Vector2(0, movementInput.y)); //Try movement only on y-input-axis
                 }
             }
+        }
+
+        FlipSprite(movementInput.x); //Check if sprite needs flipped
+        AnimationCheck(movementInput.x, movementInput.y); //Check if animation state needs to change
+    }
+
+    /// <summary>
+    /// Possible animation states for the player character in the animator.
+    /// </summary>
+    public enum PlayerStates
+    { IDLE, WALK, ATTACK, DIE }
+
+    /// <summary>
+    /// Handles the switching and setting of the current animation state.
+    /// </summary>
+    PlayerStates CurrentState
+    {
+        set
+        {
+            currentState = value;
+
+            switch (currentState)
+            {
+                case PlayerStates.IDLE:
+                    animator.Play("Idle");
+                    break;
+                case PlayerStates.WALK:
+                    animator.Play("Walk");
+                    break;
+                case PlayerStates.ATTACK:
+                    animator.Play("Attack");
+                    break;
+                case PlayerStates.DIE:
+                    animator.Play("Die");
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Checks and changes direction of horizontal sprites for left/right movement
+    /// </summary>
+    /// <param name="x"></param>
+    private void FlipSprite(float x)
+    {
+        if (x != 0 && x < 0)
+        {
+            sr.flipX = true;
+        }
+        else if (x != 0 && x > 0)
+        {
+            sr.flipX = false;
+        }
+    }
+
+    /// <summary>
+    /// Controls the switching of animation states based on the current input values.
+    /// </summary>
+    /// <param name="x">The horizontal movement input value (usually obtained from Input.GetAxis("Horizontal")).</param>
+    /// <param name="z">The vertical movement input value (usually obtained from Input.GetAxis("Vertical")).</param>
+    private void AnimationCheck(float x, float z)
+    {
+        if (x != 0 || z != 0) //If an input is being pressed
+        {
+            CurrentState = PlayerStates.WALK;
+            animator.SetFloat("xMove", x);
+            animator.SetFloat("zMove", -z);
+        }
+        else
+        {
+            CurrentState = PlayerStates.IDLE;
         }
     }
 }
