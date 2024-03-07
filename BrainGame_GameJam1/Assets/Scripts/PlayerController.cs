@@ -12,17 +12,17 @@ public class PlayerController : MonoBehaviour
     public float moveThreshold;
     public float moveThresholdOffset;
 
-    [Header("Animation Variables")]
-    private PlayerStates currentState; //Check for current animation needed
-    public SpriteRenderer sr;
-    public Animator animator;
-
     [Header("Filters")]
     public ContactFilter2D movementFilter; 
 
     [Header("Collisions")]
     public Rigidbody2D rb;
     public List<RaycastHit2D> castCollisions;
+
+    [Header("Animation Components")]
+    public PlayerStates currentState; //Check for current animation needed
+    public SpriteRenderer sr;
+    public Animator animator;
 
     /// <summary>
     /// Initializes the player's movement settings and components when the game starts.
