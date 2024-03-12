@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,6 +24,13 @@ public class PlayerController : MonoBehaviour
     public PlayerStates currentState; //Check for current animation needed
     public SpriteRenderer sr;
     public Animator animator;
+
+    [Header("Tilemap Components")]
+    public Tilemap tilemap; //Base
+    public Tilemap ex_tilemap; //Other Base extras
+    public Tilemap ob_tilemap; //Collision objects tiles
+    public float tileChangeOffsetX = 0.1f;
+    public float tileChangeOffsetY = 0.1f;
 
     /// <summary>
     /// Initializes the player's movement settings and components when the game starts.
@@ -115,7 +123,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-
+        UpdateTileColor();
         FlipSprite(movementInput.x); //Check if sprite needs flipped
         AnimationCheck(movementInput.x, movementInput.y); //Check if animation state needs to change
     }
@@ -187,6 +195,35 @@ public class PlayerController : MonoBehaviour
         else
         {
             CurrentState = PlayerStates.IDLE;
+        }
+    }
+
+    // Updates the color of the tiles in a 3x3 grid around the player
+    private void UpdateTileColor()
+    {
+        UpdateTilemapColor(tilemap);
+        UpdateTilemapColor(ex_tilemap);
+        UpdateTilemapColor(ob_tilemap);
+    }
+
+    // Update color for a specific tilemap
+    private void UpdateTilemapColor(Tilemap currentTilemap)
+    {
+        Vector3Int playerCellPosition = currentTilemap.WorldToCell(transform.position - new Vector3(tileChangeOffsetX, tileChangeOffsetY, 0)); // Adjusting for half tile offset
+
+        // Iterate through a 3x3 grid around the player
+        for (int xOffset = -1; xOffset <= 1; xOffset++)
+        {
+            for (int yOffset = -1; yOffset <= 1; yOffset++)
+            {
+                Vector3Int cellPosition = playerCellPosition + new Vector3Int(xOffset, yOffset, 0);
+                TileBase tile = currentTilemap.GetTile(cellPosition);
+
+                if (tile != null)
+                {
+                    currentTilemap.SetTile(cellPosition, null);
+                }
+            }
         }
     }
 }
