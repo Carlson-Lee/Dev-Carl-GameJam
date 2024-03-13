@@ -26,9 +26,11 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
 
     [Header("Tilemap Components")]
-    public Tilemap tilemap; //Base
-    public Tilemap ex_tilemap; //Other Base extras
-    public Tilemap ob_tilemap; //Collision objects tiles
+    public Tilemap TM_Ground; //Base
+    public Tilemap TM_GroundDetails; //Other Base extras
+    public Tilemap TM_CollisionObjects; //Collision objects tiles
+    public Tilemap TM_CollisionDetails;
+    public Tilemap TM_TopLevelDetails;
     public float tileChangeOffsetX = 0.1f;
     public float tileChangeOffsetY = 0.1f;
 
@@ -201,10 +203,12 @@ public class PlayerController : MonoBehaviour
     // Updates the color of the tiles in a 3x3 grid around the player
     private void UpdateTileColor()
     {
-        UpdateTilemapColor(tilemap);
-        UpdateTilemapColor(ex_tilemap);
-        UpdateTilemapColor(ob_tilemap);
-    }
+        UpdateTilemapColor(TM_Ground);
+        UpdateTilemapColor(TM_GroundDetails);
+        UpdateTilemapColor(TM_CollisionObjects);
+        UpdateTilemapColor(TM_CollisionDetails);
+        UpdateTilemapColor(TM_TopLevelDetails);
+}
 
     // Update color for a specific tilemap
     private void UpdateTilemapColor(Tilemap currentTilemap)
