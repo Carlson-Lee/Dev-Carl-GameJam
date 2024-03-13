@@ -42,7 +42,7 @@ Shader"Custom/BlackAndWhite"
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
                 float gray = dot(col.rgb, float3(0.299, 0.587, 0.114));
-                return fixed4(gray, gray, gray, col.a);
+                return fixed4(gray, gray, gray, col.a); // Pass through the original alpha channel
             }
             ENDCG
         }
