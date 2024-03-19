@@ -31,8 +31,11 @@ public class PlayerController : MonoBehaviour
     public Tilemap TM_CollisionObjects; //Collision objects tiles
     public Tilemap TM_CollisionDetails;
     public Tilemap TM_TopLevelDetails;
+    public Tilemap TM_OverPlayerDetails;
+    public Tilemap TM_OverPlayerDetails_Additional;
     public float tileChangeOffsetX = 0.1f;
     public float tileChangeOffsetY = 0.1f;
+    public int colourGridOffset = 3;
 
     /// <summary>
     /// Initializes the player's movement settings and components when the game starts.
@@ -208,17 +211,19 @@ public class PlayerController : MonoBehaviour
         UpdateTilemapColor(TM_CollisionObjects);
         UpdateTilemapColor(TM_CollisionDetails);
         UpdateTilemapColor(TM_TopLevelDetails);
-}
+        UpdateTilemapColor(TM_OverPlayerDetails);
+        UpdateTilemapColor(TM_OverPlayerDetails_Additional);
+    }
 
     // Update color for a specific tilemap
     private void UpdateTilemapColor(Tilemap currentTilemap)
     {
         Vector3Int playerCellPosition = currentTilemap.WorldToCell(transform.position - new Vector3(tileChangeOffsetX, tileChangeOffsetY, 0)); // Adjusting for half tile offset
 
-        // Iterate through a 3x3 grid around the player
-        for (int xOffset = -1; xOffset <= 1; xOffset++)
+        // Iterate through a grid around the player
+        for (int xOffset = -colourGridOffset; xOffset <= colourGridOffset; xOffset++)
         {
-            for (int yOffset = -1; yOffset <= 1; yOffset++)
+            for (int yOffset = -colourGridOffset; yOffset <= colourGridOffset; yOffset++)
             {
                 Vector3Int cellPosition = playerCellPosition + new Vector3Int(xOffset, yOffset, 0);
                 TileBase tile = currentTilemap.GetTile(cellPosition);
