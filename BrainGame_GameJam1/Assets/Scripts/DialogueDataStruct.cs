@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using unity.UI;
+using UnityEngine.UI;
 
 public class DialogueDataStruct : MonoBehaviour
 {
     [System.Serializable]
-
     public class Dialogue
     {
         public string[] lines;  // Array of dialogue lines
@@ -17,8 +16,11 @@ public class DialogueDataStruct : MonoBehaviour
 
         // Optional: If your dialogues include choices, you can define a separate class for them
         // public DialogueChoice[] choices;
+    }
 
-
+    void Start()
+    {
+        //Instantiate the Dialogue
         Dialogue dialogue1 = new Dialogue();
         dialogue1.lines = new string[]
         {
