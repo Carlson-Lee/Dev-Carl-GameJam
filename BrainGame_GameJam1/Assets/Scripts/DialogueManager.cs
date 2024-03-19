@@ -78,7 +78,7 @@ public class DialogueManager : MonoBehaviour
     {
         // Update the text of the Label element
         dialogueLabel.text = newText;
-        Debug.LogError(newText);
+        //Debug.LogError(newText);
     }
 }
 

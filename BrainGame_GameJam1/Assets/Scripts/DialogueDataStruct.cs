@@ -41,6 +41,7 @@ public class DialogueDataStruct : MonoBehaviour
                 lines = new string[]
                 {
                     "new dialogue test line",
+                    "test"
                 }
             }
         };

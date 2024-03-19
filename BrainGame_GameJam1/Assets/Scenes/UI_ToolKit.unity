@@ -155,6 +155,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogues: []
+--- !u!114 &1329767796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329767790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90f1e52eeb5c677478b97b9361f474d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 1329767792}
 --- !u!1 &1635292315
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,4 +525,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2519362238098959931, guid: cedddf46eda6a2c42882fe1b15e7b034, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1329767795}
+    - targetCorrespondingSourceObject: {fileID: 2519362238098959931, guid: cedddf46eda6a2c42882fe1b15e7b034, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1329767796}
   m_SourcePrefab: {fileID: 100100000, guid: cedddf46eda6a2c42882fe1b15e7b034, type: 3}
