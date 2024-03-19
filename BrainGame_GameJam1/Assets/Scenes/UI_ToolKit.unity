@@ -391,6 +391,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2519362238098959931, guid: cedddf46eda6a2c42882fe1b15e7b034, type: 3}
+      propertyPath: m_Name
+      value: DialogueLabel
+      objectReference: {fileID: 0}
     - target: {fileID: 2580477402172970289, guid: cedddf46eda6a2c42882fe1b15e7b034, type: 3}
       propertyPath: m_Name
       value: DialogueMenu

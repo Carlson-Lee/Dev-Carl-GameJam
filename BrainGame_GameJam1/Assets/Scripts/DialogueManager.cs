@@ -2,37 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class DialogueManager : MonoBehaviour
 {
     public string labelElementName = "DialogueLabel"; // Name or identifier of the Label element in UI Builder
-    private TMPro.TMP_Text dialogueLabel; // Reference to the Label element
+    private Label dialogueLabel; // Reference to the Label element
 
     void Start()
     {
         // Find the Label element by its name
-        GameObject labelObject = GameObject.Find(labelElementName);
-        if (labelObject != null)
+        var uiDoc = GetComponent<UIDocument>();
+        if (uiDoc != null)
         {
-            dialogueLabel = labelObject.GetComponent<TMPro.TMP_Text>();
+            var root = uiDoc.rootVisualElement;
+            dialogueLabel = root.Q<Label>(labelElementName);
+            if (dialogueLabel != null)
+            {
+                Debug.Log("Label element found successfully: " + labelElementName);
+                // Update the text of the Label element
+                UpdateLabel("NEW Dialogue");
+            }
+            else
+            {
+                Debug.LogError("Label element not found with name: " + labelElementName);
+            }
         }
         else
         {
-            Debug.LogError("Label element not found with name: " + labelElementName);
+            Debug.LogError("UIDocument component not found on GameObject.");
         }
     }
 
-    public void UpdateLabel(string newText)
+    // Method to update the text of the Label element
+    void UpdateLabel(string newText)
     {
         // Update the text of the Label element
-        if (dialogueLabel != null)
-        {
-            dialogueLabel.text = newText;
-        }
-        else
-        {
-            Debug.LogError("Label element is not assigned or found.");
-        }
+        dialogueLabel.text = newText;
     }
 }
 

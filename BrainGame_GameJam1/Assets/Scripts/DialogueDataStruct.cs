@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class DialogueDataStruct : MonoBehaviour
 {
     [System.Serializable]
+
     public class Dialogue
     {
         public string[] lines;  // Array of dialogue lines
@@ -18,14 +19,19 @@ public class DialogueDataStruct : MonoBehaviour
         // public DialogueChoice[] choices;
     }
 
-    void Start()
+    public Dialogue[] dialogues; //Array to hold all dialogues
+
+    // Method to retrieve a dialogue by index
+    public Dialogue GetDialogue(int index)
     {
-        //Instantiate the Dialogue
-        Dialogue dialogue1 = new Dialogue();
-        dialogue1.lines = new string[]
+        if (index >= 0 && index < dialogues.Length)
         {
-            "Yuo've woken up in a strange land",
-            "You feel something inside you has been lost"
-        };
+            return dialogues[index];
+        }
+        else
+        {
+            Debug.LogError("Index out of range: " + index);
+            return null;
+        }
     }
 }
