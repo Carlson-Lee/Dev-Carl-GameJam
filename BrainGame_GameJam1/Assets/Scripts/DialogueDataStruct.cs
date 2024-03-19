@@ -10,6 +10,7 @@ public class DialogueDataStruct : MonoBehaviour
     public class Dialogue
     {
         public string[] lines;  // Array of dialogue lines
+        //public string[] tutorial;
 
         // Optional: You can include additional fields for speaker name, portraits, etc.
         // public string speakerName;
@@ -21,17 +22,27 @@ public class DialogueDataStruct : MonoBehaviour
 
     public Dialogue[] dialogues; //Array to hold all dialogues
 
-    // Method to retrieve a dialogue by index
-    public Dialogue GetDialogue(int index)
+    void Start()
     {
-        if (index >= 0 && index < dialogues.Length)
+        dialogues = new Dialogue[]
         {
-            return dialogues[index];
-        }
-        else
-        {
-            Debug.LogError("Index out of range: " + index);
-            return null;
-        }
+            new Dialogue
+            {
+                lines = new string[]
+                {
+                    "You woke up in a strange land,",
+                    "You notice something is missing",
+                    "Use the up-down-left-right keys to move around" 
+                }
+            },
+
+            new Dialogue
+            {
+                lines = new string[]
+                {
+                    "new dialogue test line",
+                }
+            }
+        };
     }
 }
