@@ -8,9 +8,12 @@ public class DialogueManager : MonoBehaviour
 {
     public DialogueDataStruct dialogueData; //Reference to DialogueDataStruct script
     public string labelElementName = "DialogueLabel"; // Name or identifier of the Label element in UI Builder
+    public AudioClip typingSound; //Typewriter audio clip
+
     private Label dialogueLabel; // Reference to the Label element
-    private int currentDialogueIndex = 0;
+    private int currentDialogueIndex = 0; 
     private float typingSpeed = 0.05f; //Typing speed in seconds per character
+    private AudioSource audioSource; //Reference to the AudioSource component
     
 
     void Start()
@@ -38,8 +41,18 @@ public class DialogueManager : MonoBehaviour
             Debug.LogError("UIDocument component not found on GameObject.");
         }
         
+
+        // AudioSource component must be initialized before StartCoroutine
+        // Get reference to AudioSource component
+        audioSource = GetComponent<AudioSource>();
+        // Assign audio clip to the AudioSource component
+        audioSource.clip = typingSound;
+        
         //display the initial dialogue
         StartCoroutine(DisplayDialogue(currentDialogueIndex));
+
+
+
 
     }
 
@@ -57,6 +70,9 @@ public class DialogueManager : MonoBehaviour
                 // Clear the dialogue label
                 UpdateLabel("");
 
+                // Play Sound
+                audioSource.Play();
+
                 // Loop through each character of the dialogue text
                 foreach (string line in dialogue.lines)
                 {
@@ -70,6 +86,8 @@ public class DialogueManager : MonoBehaviour
                     // Wait for a short delay before showing the next character
                     yield return new WaitForSeconds(typingSpeed);
                 }
+
+                audioSource.Stop();
             }
             else
             {
