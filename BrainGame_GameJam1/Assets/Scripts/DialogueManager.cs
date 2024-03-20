@@ -10,6 +10,7 @@ public class DialogueManager : MonoBehaviour
     public string labelElementName = "DialogueLabel"; // Name or identifier of the Label element in UI Builder
     private Label dialogueLabel; // Reference to the Label element
     private int currentDialogueIndex = 0;
+    private float typingSpeed = 0.05f; //Typing speed in seconds per character
     
 
     void Start()
@@ -36,24 +37,39 @@ public class DialogueManager : MonoBehaviour
         {
             Debug.LogError("UIDocument component not found on GameObject.");
         }
-
+        
         //display the initial dialogue
-        DisplayDialogue(currentDialogueIndex);
+        StartCoroutine(DisplayDialogue(currentDialogueIndex));
+
     }
 
-    void DisplayDialogue(int index)
+    IEnumerator DisplayDialogue(int index)
     {
         // Check if the index is within the bounds of the dialogues array
         if (index >= 0 && index < dialogueData.dialogues.Length)
         {
             DialogueDataStruct.Dialogue dialogue = dialogueData.dialogues[index];
+            
             // Check if the dialogue is not null
             if (dialogue != null)
             {
-                // Concatenate all lines of dialogue into a single string
-                string fullDialogue = string.Join("\n", dialogue.lines);
-                // Update the text of the Label element
-                UpdateLabel(fullDialogue);
+
+                // Clear the dialogue label
+                UpdateLabel("");
+
+                // Loop through each character of the dialogue text
+                foreach (string line in dialogue.lines)
+                {
+                    foreach (char letter in line)
+                    {
+                        dialogueLabel.text += letter;
+                        yield return new WaitForSeconds(typingSpeed);
+                    }
+                    // Add the next character to the dialogue label
+                    dialogueLabel.text += "\n";
+                    // Wait for a short delay before showing the next character
+                    yield return new WaitForSeconds(typingSpeed);
+                }
             }
             else
             {
@@ -70,7 +86,7 @@ public class DialogueManager : MonoBehaviour
     public void NextDialogue()
     {
         currentDialogueIndex++;
-        DisplayDialogue(currentDialogueIndex);
+        StartCoroutine(DisplayDialogue(currentDialogueIndex));
     }
 
     // Method to update the text of the Label element
