@@ -36,10 +36,6 @@ public class MainMenuClickEvent : MonoBehaviour
             ExitButton.clicked += ExitButtonClick;
         }
 
-        //Callback function
-        // StartButton.RegisterCallback<ClickEvent>(OnButtonClick);
-        // ExitButton.RegisterCallback<ClickEvent>(OnButtonClick);
-
     }
 
     void StartButtonClick()
@@ -69,16 +65,6 @@ public class MainMenuClickEvent : MonoBehaviour
             Application.Quit();
         #endif
     }
-
-
-
-    // debugging
-    // public void OnButtonClick(ClickEvent evt)
-    // {
-        
-    //     Debug.Log("A Button has been clicked on");
-
-    // }
 
     
 }

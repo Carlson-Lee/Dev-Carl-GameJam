@@ -21,25 +21,8 @@ public class DialogueManager : MonoBehaviour
         // Find the Label element by its name
         var uiDoc = GetComponent<UIDocument>();
 
-        if (uiDoc != null)
-        {
-            var root = uiDoc.rootVisualElement;
-            dialogueLabel = root.Q<Label>(labelElementName);
-            if (dialogueLabel != null)
-            {
-                Debug.Log("Label element found successfully: " + labelElementName);
-                // Update the text of the Label element
-                //UpdateLabel("NEW Dialogue");
-            }
-            else
-            {
-                Debug.LogError("Label element not found with name: " + labelElementName);
-            }
-        }
-        else
-        {
-            Debug.LogError("UIDocument component not found on GameObject.");
-        }
+        var root = uiDoc.rootVisualElement;
+        dialogueLabel = root.Q<Label>(labelElementName);
         
 
         // AudioSource component must be initialized before StartCoroutine

@@ -10,14 +10,6 @@ public class DialogueDataStruct : MonoBehaviour
     public class Dialogue
     {
         public string[] lines;  // Array of dialogue lines
-        //public string[] tutorial;
-
-        // Optional: You can include additional fields for speaker name, portraits, etc.
-        // public string speakerName;
-        // public Sprite speakerPortrait;
-
-        // Optional: If your dialogues include choices, you can define a separate class for them
-        // public DialogueChoice[] choices;
     }
 
     public Dialogue[] dialogues; //Array to hold all dialogues
@@ -32,7 +24,7 @@ public class DialogueDataStruct : MonoBehaviour
                 {
                     "You woke up in a strange land,",
                     "You notice something is missing",
-                    "Use the up-down-left-right keys to move around" 
+                    "Use the ↑   ↓   ←   → keys to move around" 
                 }
             },
 
