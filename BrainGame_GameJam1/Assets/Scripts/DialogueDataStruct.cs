@@ -32,8 +32,9 @@ public class DialogueDataStruct : MonoBehaviour
             {
                 lines = new string[]
                 {
-                    "new dialogue test line",
-                    "test"
+                    "You can interact with Objects with",
+                    "      Space Bar",
+                    "Lets go ahead and grab this light"
                 }
             }
         };
