@@ -9,12 +9,13 @@ public class DialogueManager : MonoBehaviour
     public DialogueDataStruct dialogueData; //Reference to DialogueDataStruct script
     public string labelElementName = "DialogueLabel"; // Name or identifier of the Label element in UI Builder
     public AudioClip typingSound; //Typewriter audio clip
-
+    public bool isTyping = false;
+    
     private Label dialogueLabel; // Reference to the Label element
     private int currentDialogueIndex = 0; 
     private float typingSpeed = 0.05f; //Typing speed in seconds per character
     private AudioSource audioSource; //Reference to the AudioSource component
-    
+     // Flag to track if dialogue is currently being displayed  
 
     void Start()
     {
@@ -32,11 +33,25 @@ public class DialogueManager : MonoBehaviour
         audioSource.clip = typingSound;
         
         //display the initial dialogue
-        StartCoroutine(DisplayDialogue(currentDialogueIndex));
+        StartCoroutine(DisplayNextDialogue());
 
 
+    }
 
-
+    IEnumerator DisplayNextDialogue()
+    {
+        while (currentDialogueIndex < dialogueData.dialogues.Length)
+        {   
+            // Check dialogue is currently typing
+            if (!isTyping)
+            {
+                isTyping = true;
+                yield return StartCoroutine(DisplayDialogue(currentDialogueIndex));
+                currentDialogueIndex++;
+                isTyping = false;
+            }
+            yield return null;
+        }
     }
 
     IEnumerator DisplayDialogue(int index)
@@ -55,6 +70,7 @@ public class DialogueManager : MonoBehaviour
 
                 // Play Sound
                 audioSource.Play();
+                isTyping = true;
 
                 // Loop through each character of the dialogue text
                 foreach (string line in dialogue.lines)
@@ -71,6 +87,7 @@ public class DialogueManager : MonoBehaviour
                 }
 
                 audioSource.Stop();
+                isTyping = false;
             }
             else
             {
