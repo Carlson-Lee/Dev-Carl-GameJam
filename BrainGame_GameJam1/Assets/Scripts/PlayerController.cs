@@ -33,31 +33,39 @@ public class PlayerController : MonoBehaviour
     public Tilemap TM_TopLevelDetails;
     public Tilemap TM_OverPlayerDetails;
     public Tilemap TM_OverPlayerDetails_Additional;
-    public float tileChangeOffsetX = 0.1f;
-    public float tileChangeOffsetY = 0.1f;
-    public int colourGridOffset = 3;
+
+    [Header("Colour Change Size/Offsets")]
+    public float tileChangeOffsetX;
+    public float tileChangeOffsetY;
+    public int colourGridOffset;
 
     /// <summary>
     /// Initializes the player's movement settings and components when the game starts.
     /// </summary>
     void Start()
     {
-        //Set initial movement values
-        movementSpeed = 1f;
-        collisionOffset = 0f; //Gap between player and collision object
-
-        //Set values for movement limits over time
-        moveThreshold = movementSpeed * Time.fixedDeltaTime;   //Move along path with velocity (= ..speed/..time)
-        moveThresholdOffset = moveThreshold + collisionOffset; //Check movement path (extended) for collisions
-
         //References for Rigidbody2D and storing collision data
         rb = GetComponent<Rigidbody2D>();
         castCollisions = new List<RaycastHit2D>();
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+
+        //Set default values
+        movementSpeed = 1f;
+        collisionOffset = 0f;
+        tileChangeOffsetX = 0f;
+        tileChangeOffsetY = 0.1f;
+        colourGridOffset = 3;
+
+        //Set values for movement limits over time
+        moveThreshold = movementSpeed * Time.fixedDeltaTime;   //Move along path with velocity (= ..speed/..time)
+        moveThresholdOffset = moveThreshold + collisionOffset; //Check movement path (extended) for collisions
     }
 
-    //Handles player inputs to move position
+    /// <summary>
+    /// Handles player inputs to move position
+    /// </summary>
+    /// <param name="movementValue">Players movement velocity</param>
     void OnMove(InputValue movementValue)
     {
         movementInput = movementValue.Get<Vector2>();
@@ -203,7 +211,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Updates the color of the tiles in a 3x3 grid around the player
+    /// <summary>
+    /// Updates the color of the tiles in a grid around the player
+    /// </summary>
     private void UpdateTileColor()
     {
         UpdateTilemapColor(TM_Ground);
@@ -215,7 +225,10 @@ public class PlayerController : MonoBehaviour
         UpdateTilemapColor(TM_OverPlayerDetails_Additional);
     }
 
-    // Update color for a specific tilemap
+    /// <summary>
+    /// Update color for a specific tilemap
+    /// </summary>
+    /// <param name="currentTilemap">Tilemap being updated from BW to Colour</param>
     private void UpdateTilemapColor(Tilemap currentTilemap)
     {
         Vector3Int playerCellPosition = currentTilemap.WorldToCell(transform.position - new Vector3(tileChangeOffsetX, tileChangeOffsetY, 0)); // Adjusting for half tile offset
