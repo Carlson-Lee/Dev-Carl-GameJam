@@ -10,7 +10,7 @@ public class DialogueManager : MonoBehaviour
     public string labelElementName = "DialogueLabel"; // Name or identifier of the Label element in UI Builder
     public AudioClip typingSound; //Typewriter audio clip
     public bool isTyping = false;
-    
+
     private Label dialogueLabel; // Reference to the Label element
     private int currentDialogueIndex = 0; 
     private float typingSpeed = 0.05f; //Typing speed in seconds per character
@@ -33,25 +33,9 @@ public class DialogueManager : MonoBehaviour
         audioSource.clip = typingSound;
         
         //display the initial dialogue
-        StartCoroutine(DisplayNextDialogue());
+        StartCoroutine(DisplayDialogue(currentDialogueIndex));
 
 
-    }
-
-    IEnumerator DisplayNextDialogue()
-    {
-        while (currentDialogueIndex < dialogueData.dialogues.Length)
-        {   
-            // Check dialogue is currently typing
-            if (!isTyping)
-            {
-                isTyping = true;
-                yield return StartCoroutine(DisplayDialogue(currentDialogueIndex));
-                currentDialogueIndex++;
-                isTyping = false;
-            }
-            yield return null;
-        }
     }
 
     IEnumerator DisplayDialogue(int index)
@@ -103,8 +87,18 @@ public class DialogueManager : MonoBehaviour
     // Method to advance to the next dialogue
     public void NextDialogue()
     {
-        currentDialogueIndex++;
-        StartCoroutine(DisplayDialogue(currentDialogueIndex));
+        
+        //StartCoroutine(DisplayDialogue(currentDialogueIndex));
+
+        if(currentDialogueIndex == 0)
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            currentDialogueIndex++;
+            StartCoroutine(DisplayDialogue(currentDialogueIndex));
+        }
     }
 
     // Method to update the text of the Label element
@@ -113,6 +107,11 @@ public class DialogueManager : MonoBehaviour
         // Update the text of the Label element
         dialogueLabel.text = newText;
         //Debug.LogError(newText);
+    }
+
+    public void CloseDialogue()
+    {
+        gameObject.SetActive(false);
     }
 }
 
