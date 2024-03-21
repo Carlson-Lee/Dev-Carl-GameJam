@@ -67,6 +67,7 @@ MonoBehaviour:
   dialogueData: {fileID: 348934090016287227}
   labelElementName: DialogueLabel
   typingSound: {fileID: 8300000, guid: bf4ea3a2167f53340b312d79746a6918, type: 3}
+  isTyping: 0
 --- !u!114 &348934090016287227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9021202237234361697
 RectTransform:
   m_ObjectHideFlags: 0

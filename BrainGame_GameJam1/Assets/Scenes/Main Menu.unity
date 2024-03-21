@@ -369,17 +369,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1040096436513022985, guid: 6dece02854717334796d05b4fbad384d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6492924313820976573, guid: 6dece02854717334796d05b4fbad384d, type: 3}
       propertyPath: m_Name
       value: DialogueMenu
       objectReference: {fileID: 0}
     - target: {fileID: 6492924313820976573, guid: 6dece02854717334796d05b4fbad384d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9021202237234361697, guid: 6dece02854717334796d05b4fbad384d, type: 3}
       propertyPath: m_Pivot.x
@@ -560,6 +556,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 834096072624949794, guid: 7e41c5da6974a914a90740ac93e30d45, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823384649252302279, guid: 7e41c5da6974a914a90740ac93e30d45, type: 3}
+      propertyPath: m_PixelPerfect
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2890817543699475772, guid: 7e41c5da6974a914a90740ac93e30d45, type: 3}
