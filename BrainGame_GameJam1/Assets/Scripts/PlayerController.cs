@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
@@ -52,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
         //Set default values
         movementSpeed = 1f;
-        collisionOffset = 0f;
+        collisionOffset = 0f; //Change to alter how close player sprite can get to tile collision borders
         tileChangeOffsetX = 0f;
         tileChangeOffsetY = 0.1f;
         colourGridOffset = 3;
