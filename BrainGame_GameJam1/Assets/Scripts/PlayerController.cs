@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer sr;
     public Animator animator;
 
-    [Header("Tilemap Components")]
+    [Header("Tilemap Components [Black and White TMs]")]
     public Tilemap TM_Ground; //Base
     public Tilemap TM_GroundDetails; //Other Base extras
     public Tilemap TM_CollisionObjects; //Collision objects tiles
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
 
         //Set default values
-        movementSpeed = 1f;
+        movementSpeed = .5f;
         collisionOffset = 0f; //Change to alter how close player sprite can get to tile collision borders
         tileChangeOffsetX = 0f;
         tileChangeOffsetY = 0.1f;
