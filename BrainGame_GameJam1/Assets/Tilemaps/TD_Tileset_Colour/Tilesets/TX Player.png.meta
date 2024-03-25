@@ -1,0 +1,942 @@
+fileFormatVersion: 2
+guid: e00bce124678a224b9bdc3d6bda94e3d
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 200
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TX Player_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1, y: -7}
+        - {x: -1, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: -6}
+        - {x: 0, y: -6}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fc56a2ba0d8bcd48a1929679a76304c
+      internalID: -62027679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: -8}
+        - {x: 3, y: -8}
+        - {x: 2, y: -7}
+        - {x: 1, y: -6}
+        - {x: -8, y: -6}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5ed24dc2aa435c4e844b02637ac24aa
+      internalID: 807154849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 3, y: -3}
+        - {x: 2, y: -3}
+        - {x: 2, y: -4}
+        - {x: 1, y: -4}
+        - {x: 1, y: -6}
+        - {x: 0, y: -6}
+        - {x: 0, y: -7}
+        - {x: -1, y: -7}
+        - {x: -1, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: -6}
+        - {x: 6, y: -6}
+        - {x: 6, y: -4}
+        - {x: 5, y: -4}
+        - {x: 5, y: -3}
+        - {x: 4, y: -3}
+        - {x: 4, y: -2}
+        - {x: 3, y: -2}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf3d675b6a319f642825cc0895fb8ea0
+      internalID: -67052487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: -8}
+        - {x: 2, y: -8}
+        - {x: 2, y: -7}
+        - {x: 1, y: -7}
+        - {x: 1, y: -6}
+        - {x: 0, y: -6}
+        - {x: 0, y: -4}
+        - {x: -1, y: -4}
+        - {x: -1, y: -3}
+        - {x: -2, y: -3}
+        - {x: -2, y: -2}
+        - {x: -3, y: -2}
+        - {x: -3, y: -3}
+        - {x: -4, y: -3}
+        - {x: -4, y: -4}
+        - {x: -5, y: -4}
+        - {x: -5, y: -6}
+        - {x: -8, y: -6}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a588dc2dfff02943b70f03cade8f99c
+      internalID: -1908988242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1, y: -5}
+        - {x: -3, y: -5}
+        - {x: -3, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: -6}
+        - {x: -1, y: -6}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da72179b694ac7148a6cc1cdb6a0d29c
+      internalID: 1926162132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: -8}
+        - {x: 2, y: -8}
+        - {x: 1, y: -7}
+        - {x: 0, y: -6}
+        - {x: -8, y: -6}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7edb662cb1524fb40af554c9731a82b4
+      internalID: -1288745673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -2, y: 8}
+        - {x: -2, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: 8}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ed2df19523cd3e41aab3d7a760d44a8
+      internalID: 1127864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_7
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 3, y: -8}
+        - {x: 3, y: 8}
+        - {x: -8, y: 8}
+        - {x: -8, y: -8}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4f97aa347ff479449da12d5c460dcec
+      internalID: 1775083333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_8
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -2, y: 8}
+        - {x: -2, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: 8}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f5aabbe08ac5654289943b0393a6fff
+      internalID: -1152270707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_9
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 3, y: -8}
+        - {x: 3, y: 8}
+        - {x: -8, y: 8}
+        - {x: -8, y: -8}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f29d08c5df7d8334594d332ac4d1a3c2
+      internalID: -1277985733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: 8}
+        - {x: -3, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: 8}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bfec5463b3d1f345920d6807789634f
+      internalID: 1387432628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_11
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2, y: -8}
+        - {x: 2, y: 8}
+        - {x: -8, y: 8}
+        - {x: -8, y: -8}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f725f9803bb15d94888f32b30c1b5ec9
+      internalID: -397786136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -2, y: 8}
+        - {x: -2, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: 8}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e03c268e8a043424fa2b1735a5b44a1f
+      internalID: -188191537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_13
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 3, y: -8}
+        - {x: 3, y: 8}
+        - {x: -8, y: 8}
+        - {x: -8, y: -8}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72d526bdebf52924b917284aa4d2874a
+      internalID: -1363882216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_14
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -2, y: 8}
+        - {x: -2, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: 8}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca40beb3459d181408a7d7de3fe1d619
+      internalID: -1962968741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_15
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 3, y: -8}
+        - {x: 3, y: 8}
+        - {x: -8, y: 8}
+        - {x: -8, y: -8}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af2623c257d773d4c8703b8f8c874b54
+      internalID: 825836131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_16
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: 8}
+        - {x: -3, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: 8}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51a7d52a96357de488c77ac59629ccf9
+      internalID: 1981204409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_17
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2, y: -8}
+        - {x: 2, y: 8}
+        - {x: -8, y: 8}
+        - {x: -8, y: -8}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ce7b462c8942c64bb0ff7314eae72fd
+      internalID: 286613146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_18
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: 8}
+        - {x: -5, y: -2}
+        - {x: -5, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: 8}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7a366656c94fde47ae6efb258e12ada
+      internalID: 357566747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_19
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 8}
+        - {x: -8, y: -8}
+        - {x: 6, y: -8}
+        - {x: 6, y: 7}
+        - {x: 5, y: 8}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f24bbb09eceb7164da502808fcfe28ad
+      internalID: -822504741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -2, y: 8}
+        - {x: -2, y: -1}
+        - {x: -1, y: -2}
+        - {x: 8, y: -2}
+        - {x: 8, y: 8}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 291a60bc05425d44db19f1139d886968
+      internalID: 423016282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_21
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 8}
+        - {x: -8, y: -2}
+        - {x: 2, y: -2}
+        - {x: 3, y: -1}
+        - {x: 3, y: 8}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 098fdc1bbeb991f408043cdc11c25e4d
+      internalID: -139144734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_22
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -2, y: 8}
+        - {x: -2, y: -1}
+        - {x: -1, y: -2}
+        - {x: 8, y: -2}
+        - {x: 8, y: 8}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5b78b048255d5749a86442bbbbb9d14
+      internalID: 230298434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_23
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 8}
+        - {x: -8, y: -2}
+        - {x: 2, y: -2}
+        - {x: 3, y: -1}
+        - {x: 3, y: 8}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bd8a9a3e4b662c4598becf770756765
+      internalID: 493836680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_24
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: 8}
+        - {x: -3, y: -1}
+        - {x: -2, y: -2}
+        - {x: 8, y: -2}
+        - {x: 8, y: 8}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72805df72ca9f814d927f93757bb197c
+      internalID: 357155693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_25
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 8}
+        - {x: -8, y: -2}
+        - {x: 1, y: -2}
+        - {x: 2, y: -1}
+        - {x: 2, y: 8}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45161e0b56de6e84c98fd7a860decf69
+      internalID: 711077499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_26
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5, y: 8}
+        - {x: -5, y: -3}
+        - {x: -4, y: -4}
+        - {x: 8, y: -4}
+        - {x: 8, y: 8}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91c967a99aa6fe84fac7f0a3075f54d1
+      internalID: 1414290247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX Player_27
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 8}
+        - {x: -8, y: -4}
+        - {x: -5, y: -4}
+        - {x: -1, y: -4}
+        - {x: 1, y: -2.025978}
+        - {x: 2, y: 0}
+        - {x: 3, y: 2}
+        - {x: 4, y: 4}
+        - {x: 5, y: 6}
+        - {x: 6, y: 8}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85ae35d928f6e8743b40aa05260c0a71
+      internalID: -1389985297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      TX Player_0: -62027679
+      TX Player_1: 807154849
+      TX Player_10: 1387432628
+      TX Player_11: -397786136
+      TX Player_12: -188191537
+      TX Player_13: -1363882216
+      TX Player_14: -1962968741
+      TX Player_15: 825836131
+      TX Player_16: 1981204409
+      TX Player_17: 286613146
+      TX Player_18: 357566747
+      TX Player_19: -822504741
+      TX Player_2: -67052487
+      TX Player_20: 423016282
+      TX Player_21: -139144734
+      TX Player_22: 230298434
+      TX Player_23: 493836680
+      TX Player_24: 357155693
+      TX Player_25: 711077499
+      TX Player_26: 1414290247
+      TX Player_27: -1389985297
+      TX Player_3: -1908988242
+      TX Player_4: 1926162132
+      TX Player_5: -1288745673
+      TX Player_6: 1127864
+      TX Player_7: 1775083333
+      TX Player_8: -1152270707
+      TX Player_9: -1277985733
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
