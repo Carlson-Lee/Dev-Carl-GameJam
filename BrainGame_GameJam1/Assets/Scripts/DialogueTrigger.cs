@@ -9,7 +9,7 @@ public class DialogueTrigger : MonoBehaviour
     void Update()
     {
         // Check for mouse click or space bar input
-        if (!dialogueManager.isTyping && Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+        if (!dialogueManager.isTyping && Input.GetMouseButtonDown(0) || !dialogueManager.isTyping && Input.GetKeyDown(KeyCode.Space))
         {
             // Trigger the next dialogue
             dialogueManager.NextDialogue();
