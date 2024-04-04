@@ -29,5 +29,14 @@ public class Parallax_2 : MonoBehaviour
         Vector3 NewPosition = new Vector3(_startingPos + Distance, transform.position.y, transform.position.z);
 
         transform.position = NewPosition;
+
+        if (Temp > _startingPos + (_lengthOfSprite / 2))
+            {
+                _startingPos += _lengthOfSprite;
+            }
+        else if (Temp < _startingPos - (_lengthOfSprite / 2))
+            {
+                _startingPos -= _lengthOfSprite;
+            }
     }
 }
