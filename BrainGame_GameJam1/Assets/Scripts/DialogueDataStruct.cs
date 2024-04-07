@@ -14,64 +14,20 @@ public class DialogueDataStruct : MonoBehaviour
 
     public Dialogue[] dialogues; //Array to hold all dialogues
 
-    void Start()
+    public Dialogue GetDialogue(int index)
     {
-        dialogues = new Dialogue[]
+        if (index >= 0 && index < dialogues.Length)
         {
-            new Dialogue
-            {
-                lines = new string[]
-                {
-                    "You woke up in a strange land,",
-                    "You notice something is missing",
-                    "Use the ↑   ↓   ←   → keys to move around" 
-                }
-            },
-
-            new Dialogue
-            {
-                lines = new string[]
-                {
-                    "You can interact with Objects with",
-                    "      Space Bar",
-                    "Lets go ahead and grab this light"
-                }
-            },
-
-            new Dialogue
-            {
-                lines = new string[]
-                {
-                    "test"
-                }
-            },
-
-            new Dialogue
-            {
-                lines = new string[]
-                {
-                    "2 You can interact with Objects with",
-                    "      2 Space Bar",
-                    "2 Lets go ahead and grab this light"
-                }
-            },
-
-            new Dialogue
-            {
-                lines = new string[]
-                {
-                    "test 2"
-                }
-            },
-
-            new Dialogue
-            {
-                lines = new string[]
-                {
-                    "test 2"
-                }
-            },
-
-        };
+            return dialogues[index];
+        }
+        else
+        {
+            Debug.LogError("Dialogue index out of range.");
+            return null;
+        }
+        
     }
+                    //     "You woke up in a strange land,",
+                    // "You notice something is missing",
+                    // "Use the ↑   ↓   ←   → keys to move around" 
 }
