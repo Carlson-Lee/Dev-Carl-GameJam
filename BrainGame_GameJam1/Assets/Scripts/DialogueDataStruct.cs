@@ -36,7 +36,16 @@ public class DialogueDataStruct : MonoBehaviour
                     "      Space Bar",
                     "Lets go ahead and grab this light"
                 }
+            },
+
+            new Dialogue
+            {
+                lines = new string[]
+                {
+                    "test"
+                }
             }
+
         };
     }
 }
