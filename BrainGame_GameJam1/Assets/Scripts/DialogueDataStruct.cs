@@ -44,7 +44,33 @@ public class DialogueDataStruct : MonoBehaviour
                 {
                     "test"
                 }
-            }
+            },
+
+            new Dialogue
+            {
+                lines = new string[]
+                {
+                    "2 You can interact with Objects with",
+                    "      2 Space Bar",
+                    "2 Lets go ahead and grab this light"
+                }
+            },
+
+            new Dialogue
+            {
+                lines = new string[]
+                {
+                    "test 2"
+                }
+            },
+
+            new Dialogue
+            {
+                lines = new string[]
+                {
+                    "test 2"
+                }
+            },
 
         };
     }
