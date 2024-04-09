@@ -6,57 +6,62 @@ public class PlatformManager : MonoBehaviour
 {
     public GameObject platformPrefab;
     public Transform playerTransform;
-    public float segmentWidth = 5f;
-    public int spawnDistance = 10;
-    public float destroyDistance = 10f;
+    public float segmentWidth = 2f;
+    public int segmentsAhead = 1;
+    public float destroyDistance = 1f;
 
     private float lastSpawnX;
-    private GameObject lastSpawnedPlatform;
-    private bool canSpawn = true;
+    private Queue<GameObject> spawnedSegments = new Queue<GameObject>();
 
+
+   
     void Start()
     {
+
         lastSpawnX = playerTransform.position.x;
-        SpawnSegment();
+        SpawnInitialSegments();
     }
 
+    // Update is called once per frame
     void Update()
     {
-        if (canSpawn && playerTransform.position.x > lastSpawnX - spawnDistance)
+        float spawnPositionX = lastSpawnX + segmentWidth;
+
+
+        if (playerTransform.position.x > spawnPositionX - (segmentWidth * segmentsAhead))
         {
-            SpawnSegment();
+            SpawnSegment(spawnPositionX);
+            lastSpawnX = spawnPositionX;
         }
 
         DestroySegmentsBehind();
     }
 
-    void SpawnSegment()
+
+    void SpawnInitialSegments()
     {
-        Vector3 spawnPosition = new Vector3(lastSpawnX + segmentWidth, transform.position.y - 5.5f, transform.position.z);
-        Instantiate(platformPrefab, spawnPosition, Quaternion.identity);
-        lastSpawnX += segmentWidth;
-        lastSpawnedPlatform = platformPrefab;
-        canSpawn = false;
-        StartCoroutine(WaitForPlayerMove());
+        for (int i = 0; i < segmentsAhead; i++)
+        {
+            SpawnSegment(lastSpawnX);
+            lastSpawnX += segmentWidth;
+        }
     }
 
-    IEnumerator WaitForPlayerMove()
+    void SpawnSegment(float spawnX)
     {
-        yield return new WaitUntil(() => playerTransform.position.x > lastSpawnX - segmentWidth);
-        canSpawn = true;
+        Vector3 spawnPosition = new Vector3(spawnX, transform.position.y, transform.position.z);
+        GameObject newSegment = Instantiate(platformPrefab, spawnPosition, Quaternion.identity);
+        spawnedSegments.Enqueue(newSegment);
     }
 
     void DestroySegmentsBehind()
     {
-        GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
-
-        foreach (GameObject platform in platforms)
+        while (spawnedSegments.Count > 0 && spawnedSegments.Peek().transform.position.x < playerTransform.position.x - destroyDistance)
         {
-            if (platform.transform.position.x < playerTransform.position.x - spawnDistance)
-            {
-                Destroy(platform);
-            }
+            GameObject segmentToDestroy = spawnedSegments.Dequeue();
+            Destroy(segmentToDestroy);
         }
     }
+
 
 }
