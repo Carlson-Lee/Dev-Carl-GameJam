@@ -14,12 +14,17 @@ public class SideScrollerPlayerController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private BoxCollider2D playerCollider;
 
     [Header("Ground Check")]
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private float groundCheckRadius = 0.2f;
+    [SerializeField] private float groundCheckDistance = 0.2f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private PlayerStates currentState; //Check for current animation needed
+
+    [SerializeField] private float wallCheckDistance = 0.2f;
+    [SerializeField] private LayerMask wallLayer;
+    [SerializeField] private bool isTouchingWall = false;
 
     private void Start()
     {
@@ -27,6 +32,7 @@ public class SideScrollerPlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         playerInput = GetComponent<PlayerInput>();
+        playerCollider = GetComponent<BoxCollider2D>();
 
         // Switch to SideScroller action map
         playerInput.SwitchCurrentActionMap("SideScroller");
@@ -41,7 +47,36 @@ public class SideScrollerPlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(movementInput.x * movementSpeed, rb.velocity.y);
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundLayer);
+
+        if (hit.collider != null)
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
+
+        // Wall Check
+        RaycastHit2D wallHitRight = Physics2D.Raycast(transform.position, Vector2.right, wallCheckDistance, wallLayer);
+        RaycastHit2D wallHitLeft = Physics2D.Raycast(transform.position, Vector2.left, wallCheckDistance, wallLayer);
+        isTouchingWall = wallHitRight.collider != null || wallHitLeft.collider != null;
+
+        // Movement
+        if (!isTouchingWall && isGrounded)
+        {
+            rb.velocity = new Vector2(movementInput.x * movementSpeed, rb.velocity.y);
+        }
+        
+        if (isTouchingWall)
+        {
+            playerCollider.enabled = false;
+        }
+        else
+        {
+            playerCollider.enabled = true;
+        }
     }
 
     private void UpdateMovement()
