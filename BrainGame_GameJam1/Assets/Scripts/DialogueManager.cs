@@ -38,7 +38,7 @@ public class DialogueManager : MonoBehaviour
 
     }
 
-    IEnumerator DisplayDialogue(int index)
+    public IEnumerator DisplayDialogue(int index)
     {
         // Check if the index is within the bounds of the dialogues array
         if (index >= 0 && index < dialogueData.dialogues.Length)

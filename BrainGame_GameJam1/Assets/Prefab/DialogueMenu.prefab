@@ -94,6 +94,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueManager: {fileID: 4584652020610769376}
+  dialogueDataStruct: {fileID: 0}
+  dialogueIndexToTrigger: 0
 --- !u!82 &7574874520564247470
 AudioSource:
   m_ObjectHideFlags: 0
@@ -208,7 +210,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &9021202237234361697
 RectTransform:
   m_ObjectHideFlags: 0
