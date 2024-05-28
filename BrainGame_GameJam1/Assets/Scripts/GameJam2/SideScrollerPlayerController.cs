@@ -1,30 +1,34 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class SideScrollerPlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] private float movementSpeed = 1f;
-    [SerializeField] private float jumpForce = 10f;
+    [SerializeField] private float movementSpeed;
+    [SerializeField] private float jumpForce;
     [SerializeField] private Vector2 movementInput;
-    [SerializeField] private bool isGrounded = false;
+    [SerializeField] private PlayerStates currentState; //Check for current animation needed
+
+    [Header("CollisionDetection")]
+    [SerializeField] private bool isGrounded;
+    [SerializeField] private bool isTouchingWall;
+    [SerializeField] private bool isFalling;
+    //Walls
+    [SerializeField] public float wallCheckDistance;
+    [SerializeField] private LayerMask wallLayer;
+    //Ground
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private Vector2 groundCheckSize;
+    [SerializeField] public float groundCheckDistance;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float wallPushModifier;
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private PlayerInput playerInput;
-    [SerializeField] private BoxCollider2D playerCollider;
-
-    [Header("Ground Check")]
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private float groundCheckDistance = 0.2f;
-    [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private PlayerStates currentState; //Check for current animation needed
-
-    [SerializeField] private float wallCheckDistance = 0.2f;
-    [SerializeField] private LayerMask wallLayer;
-    [SerializeField] private bool isTouchingWall = false;
 
     private void Start()
     {
@@ -32,10 +36,20 @@ public class SideScrollerPlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         playerInput = GetComponent<PlayerInput>();
-        playerCollider = GetComponent<BoxCollider2D>();
 
         // Switch to SideScroller action map
         playerInput.SwitchCurrentActionMap("SideScroller");
+
+        //Set all variables
+        movementSpeed = 1f;
+        jumpForce = 150f;
+        isGrounded = false;
+        isTouchingWall = false;
+        isFalling = false;
+        wallCheckDistance = 0.1f;
+        groundCheckDistance = 0.1f;
+        wallPushModifier = 1f;
+        groundCheckSize = new Vector2(0.2f, 0.1f);
     }
 
     private void Update()
@@ -46,36 +60,38 @@ public class SideScrollerPlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(movementInput.x * movementSpeed, rb.velocity.y);
-        RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundLayer);
-
-        if (hit.collider != null)
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
+        // Ground Check using OverlapBox
+        Collider2D groundHit = Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, groundLayer);
+        isGrounded = groundHit != null;
 
         // Wall Check
         RaycastHit2D wallHitRight = Physics2D.Raycast(transform.position, Vector2.right, wallCheckDistance, wallLayer);
         RaycastHit2D wallHitLeft = Physics2D.Raycast(transform.position, Vector2.left, wallCheckDistance, wallLayer);
         isTouchingWall = wallHitRight.collider != null || wallHitLeft.collider != null;
 
+        // Reset falling state if grounded
+        if (isGrounded)
+        {
+            isFalling = false;
+        }
+
         // Movement
-        if (!isTouchingWall && isGrounded)
+        if (!isTouchingWall && !isFalling)
         {
             rb.velocity = new Vector2(movementInput.x * movementSpeed, rb.velocity.y);
         }
-        
-        if (isTouchingWall)
+        else if (isTouchingWall)
         {
-            playerCollider.enabled = false;
-        }
-        else
-        {
-            playerCollider.enabled = true;
+            if (wallHitRight.collider != null)
+            {
+                rb.velocity = new Vector2(-movementSpeed * wallPushModifier, rb.velocity.y); // Bounce to the left
+                isFalling = true; // Set falling state
+            }
+            else if (wallHitLeft.collider != null)
+            {
+                rb.velocity = new Vector2(movementSpeed * wallPushModifier, rb.velocity.y); // Bounce to the right
+                isFalling = true; // Set falling state
+            }
         }
     }
 
@@ -87,6 +103,9 @@ public class SideScrollerPlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Check if the player should be walking or idle based on key inputs
+    /// </summary>
     private void UpdateAnimationState()
     {
         if (movementInput.x != 0)  //If an input is being pressed
@@ -102,11 +121,19 @@ public class SideScrollerPlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Saves the players input direction for movement
+    /// </summary>
+    /// <param name="movementValue"></param>
     private void OnMove(InputValue movementValue)
     {
         movementInput = movementValue.Get<Vector2>();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="jumpValue"></param>
     private void OnJump(InputValue jumpValue)
     {
         Debug.Log("Jump input received");
