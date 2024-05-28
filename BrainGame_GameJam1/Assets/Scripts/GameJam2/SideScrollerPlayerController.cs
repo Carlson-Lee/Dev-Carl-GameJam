@@ -57,7 +57,7 @@ public class SideScrollerPlayerController : MonoBehaviour
         if (movementInput.x != 0)  //If an input is being pressed
         {
             CurrentState = PlayerStates.WALK;
-            animator.SetFloat("xMove", Mathf.Abs(movementInput.x));
+            animator.SetFloat("xMove", movementInput.x);
             animator.SetBool("isGrounded", isGrounded);
             animator.SetFloat("yVelocity", rb.velocity.y);
         }
@@ -74,16 +74,12 @@ public class SideScrollerPlayerController : MonoBehaviour
 
     private void OnJump(InputValue jumpValue)
     {
+        Debug.Log("Jump input received");
         if (jumpValue.isPressed && isGrounded)
         {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            Debug.Log("Jumping");
+            rb.AddForce(Vector2.up * jumpForce);
         }
-    }
-
-    private void OnDisable()
-    {
-        // Revert to the Player action map when this controller is disabled
-        playerInput.SwitchCurrentActionMap("Player");
     }
 
     /// <summary>
