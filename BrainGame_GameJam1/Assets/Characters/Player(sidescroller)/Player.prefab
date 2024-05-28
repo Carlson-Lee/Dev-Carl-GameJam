@@ -311,26 +311,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 1
-  jumpForce: 150
+  jumpForce: 10
   movementInput: {x: 0, y: 0}
   currentState: 0
   isGrounded: 0
   isTouchingWall: 0
   isFalling: 0
-  wallCheckDistance: 0.05
+  wallCheckDistance: 0.1
   wallLayer:
     serializedVersion: 2
     m_Bits: 128
   groundCheck: {fileID: 6770351706959581201}
-  groundCheckDistance: 0.2
+  groundCheckSize: {x: 0, y: 0}
+  groundCheckDistance: 0.1
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  wallPushModifier: 1.5
+  wallPushModifier: 1
   rb: {fileID: 4974755981029022876}
   animator: {fileID: 8434058820335725194}
   sr: {fileID: 4589700559352017988}
   playerInput: {fileID: 189822875320936102}
+  maxJumpForce: 10
+  minJumpForce: 5
+  maxHoldTime: 1
 --- !u!1 &9082074809033539843
 GameObject:
   m_ObjectHideFlags: 0
