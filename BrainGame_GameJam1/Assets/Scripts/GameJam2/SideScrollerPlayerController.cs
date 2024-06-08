@@ -30,6 +30,8 @@ public class SideScrollerPlayerController : MonoBehaviour
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private PlayerInput playerInput;
 
+    private Coroutine jumpCoroutine;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -46,7 +48,7 @@ public class SideScrollerPlayerController : MonoBehaviour
         isGrounded = false;
         isTouchingWall = false;
         isFalling = false;
-        wallCheckDistance = 0.1f;
+        wallCheckDistance = 0.05f;
         groundCheckDistance = 0.1f;
         wallPushModifier = 1f;
         groundCheckSize = new Vector2(0.2f, 0.1f);
@@ -54,8 +56,9 @@ public class SideScrollerPlayerController : MonoBehaviour
 
     private void Update()
     {
-        UpdateMovement();
+        UpdateSpriteDirection();
         UpdateAnimationState();
+
     }
 
     private void FixedUpdate()
@@ -95,7 +98,10 @@ public class SideScrollerPlayerController : MonoBehaviour
         }
     }
 
-    private void UpdateMovement()
+    /// <summary>
+    /// Flips the sprite direction left/right depending on key input
+    /// </summary>
+    private void UpdateSpriteDirection()
     {
         if (movementInput.x != 0)
         {
@@ -125,10 +131,7 @@ public class SideScrollerPlayerController : MonoBehaviour
     /// Saves the players input direction for movement
     /// </summary>
     /// <param name="movementValue"></param>
-    private void OnMove(InputValue movementValue)
-    {
-        movementInput = movementValue.Get<Vector2>();
-    }
+    private void OnMove(InputValue movementValue) { movementInput = movementValue.Get<Vector2>(); }
 
     /// <summary>
     /// 
@@ -136,10 +139,8 @@ public class SideScrollerPlayerController : MonoBehaviour
     /// <param name="jumpValue"></param>
     private void OnJump(InputValue jumpValue)
     {
-        Debug.Log("Jump input received");
         if (jumpValue.isPressed && isGrounded)
         {
-            Debug.Log("Jumping");
             rb.AddForce(Vector2.up * jumpForce);
         }
     }
@@ -147,34 +148,19 @@ public class SideScrollerPlayerController : MonoBehaviour
     /// <summary>
     /// Possible animation states for the player character in the animator.
     /// </summary>
-    public enum PlayerStates
-    { IDLE, WALK, ATTACK, DIE }
+    public enum PlayerStates { IDLE, WALK, ATTACK, DIE }
 
     /// <summary>
     /// Handles the switching and setting of the current animation state.
     /// </summary>
-    PlayerStates CurrentState
-    {
-        set
-        {
+    PlayerStates CurrentState { set {
             currentState = value;
-
             switch (currentState)
-            {
-                case PlayerStates.IDLE:
-                    animator.Play("Idle");
-                    break;
-                case PlayerStates.WALK:
-                    animator.Play("Walk");
-                    break;
-                case PlayerStates.ATTACK:
-                    animator.Play("Attack");
-                    break;
-                case PlayerStates.DIE:
-                    animator.Play("Die");
-                    break;
-                default:
-                    break;
+            {   case PlayerStates.IDLE:   animator.Play("Idle");   break;
+                case PlayerStates.WALK:   animator.Play("Walk");   break;
+                case PlayerStates.ATTACK: animator.Play("Attack"); break;
+                case PlayerStates.DIE:    animator.Play("Die");    break;
+                default: break;
             }
         }
     }
