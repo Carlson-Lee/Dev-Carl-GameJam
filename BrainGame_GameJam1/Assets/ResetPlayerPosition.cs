@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ResetPlayerPosition : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (collision.CompareTag("Player"))
+        {
+            //Will need to change this if checkpoints are implemented
+            collision.transform.position = Vector2.zero;
+        }
     }
 }
