@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 public class SideScrollerPlayerController : MonoBehaviour
 {
@@ -30,11 +31,6 @@ public class SideScrollerPlayerController : MonoBehaviour
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private PlayerInput playerInput;
 
-    [Header("Jump Settings")]
-    [SerializeField] private float jumpHoldDuration = 0.5f; // Maximum time the jump can be held
-    [SerializeField] private float jumpSpeed = 5f; // Jump speed
-    private float lastGroundedAtTime = -1f;
-
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -47,13 +43,13 @@ public class SideScrollerPlayerController : MonoBehaviour
 
         //Set all variables
         movementSpeed = 1f;
-        jumpForce = 150f;
+        jumpForce = 5f;
         isGrounded = false;
         isTouchingWall = false;
         isFalling = false;
         wallCheckDistance = 0.05f;
         groundCheckDistance = 0.1f;
-        wallPushModifier = 1f;
+        wallPushModifier = 0.5f;
         groundCheckSize = new Vector2(0.2f, 0.1f);
     }
 
@@ -62,36 +58,17 @@ public class SideScrollerPlayerController : MonoBehaviour
         UpdateSpriteDirection();
         UpdateAnimationState();
 
-        // Ground Check using OverlapBox
-        Collider2D groundHit = Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, groundLayer);
-        isGrounded = groundHit != null;
-
-        // Track last grounded time
-        if (isGrounded) lastGroundedAtTime = Time.time;
-
-        // Handle jump
-        if (Keyboard.current.spaceKey.isPressed && Time.time < lastGroundedAtTime + jumpHoldDuration)
-        {
-            rb.velocity = Vector2.up * jumpSpeed;
-        }
     }
 
     private void FixedUpdate()
     {
-        // Ground Check using OverlapBox
-        Collider2D groundHit = Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, groundLayer);
-        isGrounded = groundHit != null;
+        isGrounded = GroundCheck();
+        isFalling = isGrounded ? false : isFalling; //If player is on ground, set falling to false
 
-        // Wall Check
+        //Check if player touching walls
         RaycastHit2D wallHitRight = Physics2D.Raycast(transform.position, Vector2.right, wallCheckDistance, wallLayer);
         RaycastHit2D wallHitLeft = Physics2D.Raycast(transform.position, Vector2.left, wallCheckDistance, wallLayer);
         isTouchingWall = wallHitRight.collider != null || wallHitLeft.collider != null;
-
-        // Reset falling state if grounded
-        if (isGrounded)
-        {
-            isFalling = false;
-        }
 
         // Movement
         if (!isTouchingWall && !isFalling)
@@ -103,13 +80,62 @@ public class SideScrollerPlayerController : MonoBehaviour
             if (wallHitRight.collider != null)
             {
                 rb.velocity = new Vector2(-movementSpeed * wallPushModifier, rb.velocity.y); // Bounce to the left
-                isFalling = true; // Set falling state
             }
             else if (wallHitLeft.collider != null)
             {
                 rb.velocity = new Vector2(movementSpeed * wallPushModifier, rb.velocity.y); // Bounce to the right
-                isFalling = true; // Set falling state
             }
+            isFalling = true;
+        }
+    }
+
+    /// <summary>
+    /// Use overlap box to check area below player for ground layer => set bool
+    /// </summary>
+    /// <returns>Bool for if the player is currently grounded</returns>
+    private bool GroundCheck()
+    {
+        Collider2D groundHit = Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, groundLayer);
+        return groundHit != null;
+    }
+
+
+    /// <summary>
+    /// Saves the players input direction for movement
+    /// </summary>
+    /// <param name="movementValue"></param>
+    private void OnMove(InputValue movementValue) { movementInput = movementValue.Get<Vector2>(); }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="jumpValue"></param>
+    private void OnJump(InputValue jumpValue)
+    {
+        if (jumpValue.isPressed && isGrounded)
+        {
+            rb.AddForce(Vector2.up * jumpForce);
+        }
+    }
+
+    public void Move(InputAction.CallbackContext context)
+    {
+        movementInput = context.ReadValue<Vector2>();
+    }
+
+    public void Jump(InputAction.CallbackContext context)
+    {
+        bool jumpButtonPressed = context.performed;
+        bool jumpButtonReleased = context.canceled;
+
+        if (jumpButtonPressed && isGrounded)
+        {
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
+
+        if (jumpButtonReleased && rb.velocity.y > 0f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, -.1f);
         }
     }
 
@@ -139,24 +165,6 @@ public class SideScrollerPlayerController : MonoBehaviour
         else
         {
             CurrentState = PlayerStates.IDLE;
-        }
-    }
-
-    /// <summary>
-    /// Saves the players input direction for movement
-    /// </summary>
-    /// <param name="movementValue"></param>
-    private void OnMove(InputValue movementValue) { movementInput = movementValue.Get<Vector2>(); }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="jumpValue"></param>
-    private void OnJump(InputValue jumpValue)
-    {
-        if (jumpValue.isPressed && isGrounded)
-        {
-            rb.AddForce(Vector2.up * jumpForce);
         }
     }
 

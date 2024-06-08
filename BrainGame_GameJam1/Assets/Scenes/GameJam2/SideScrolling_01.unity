@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &255194552
+--- !u!1001 &77057089
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -177,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2885351292991910016, guid: 2e7bfc1ad27da884180aba65550f16b3, type: 3}
       propertyPath: orthographic size
-      value: 0.6275
+      value: 0.6175
       objectReference: {fileID: 0}
     - target: {fileID: 3852591537423330908, guid: 2e7bfc1ad27da884180aba65550f16b3, type: 3}
       propertyPath: m_Name

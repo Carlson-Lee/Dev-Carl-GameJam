@@ -199,7 +199,55 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bb263102-de4b-4320-93fb-47011baba77a
+    m_ActionName: SideScroller/Move[/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fc0274e9-77da-4263-96c0-97cf1ea15466
+    m_ActionName: SideScroller/Jump[/Keyboard/space,/Keyboard/upArrow,/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 154a47e4-5bae-4692-a797-679b9a4ed41f
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f7fe2407-a3ca-4bb6-b650-aefd77db8569
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 39a69092-8e59-4c40-a5cf-51e709915902
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: acd2cd0e-e8a1-493b-9a40-59323518e49a
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 60a3a47e-a2ff-46c5-a953-7e68134c58ea
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1bd8ef62-0c7f-4973-bf7c-ad94cff2d635
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9e5081e5-f78b-4d69-afb1-ea28dd24628c
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 09e97147-6cec-4940-bde2-b08e773638c9
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8e61b29f-9b31-46b6-a845-a788a686f839
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 37d0c4d4-2061-4b5d-a257-0e53f2e9d527
+    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: UI
@@ -332,8 +380,8 @@ MonoBehaviour:
   animator: {fileID: 8434058820335725194}
   sr: {fileID: 4589700559352017988}
   playerInput: {fileID: 189822875320936102}
-  jumpHoldDuration: 0.5
-  jumpSpeed: 5
+  shortJumpForce: 200
+  longJumpForce: 500
 --- !u!1 &9082074809033539843
 GameObject:
   m_ObjectHideFlags: 0
