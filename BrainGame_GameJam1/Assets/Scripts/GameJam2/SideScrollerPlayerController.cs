@@ -43,7 +43,7 @@ public class SideScrollerPlayerController : MonoBehaviour
 
         //Set all variables
         movementSpeed = 1f;
-        jumpForce = 5f;
+        jumpForce = 10f;
         isGrounded = false;
         isTouchingWall = false;
         isFalling = false;
@@ -125,17 +125,17 @@ public class SideScrollerPlayerController : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        bool jumpButtonPressed = context.performed;
-        bool jumpButtonReleased = context.canceled;
+        bool jumpPressed = context.performed;
+        bool jumpReleased = context.canceled;
 
-        if (jumpButtonPressed && isGrounded)
+        if (jumpPressed && isGrounded)
         {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * jumpForce);
         }
 
-        if (jumpButtonReleased && rb.velocity.y > 0f)
+        if (jumpReleased && rb.velocity.y > 0f)
         {
-            rb.velocity = new Vector2(rb.velocity.x, -.1f);
+            rb.velocity = new Vector2(rb.velocity.x, 1f);
         }
     }
 
