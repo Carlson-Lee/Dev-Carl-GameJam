@@ -30,7 +30,10 @@ public class SideScrollerPlayerController : MonoBehaviour
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private PlayerInput playerInput;
 
-    private Coroutine jumpCoroutine;
+    [Header("Jump Settings")]
+    [SerializeField] private float jumpHoldDuration = 0.5f; // Maximum time the jump can be held
+    [SerializeField] private float jumpSpeed = 5f; // Jump speed
+    private float lastGroundedAtTime = -1f;
 
     private void Start()
     {
@@ -59,6 +62,18 @@ public class SideScrollerPlayerController : MonoBehaviour
         UpdateSpriteDirection();
         UpdateAnimationState();
 
+        // Ground Check using OverlapBox
+        Collider2D groundHit = Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, groundLayer);
+        isGrounded = groundHit != null;
+
+        // Track last grounded time
+        if (isGrounded) lastGroundedAtTime = Time.time;
+
+        // Handle jump
+        if (Keyboard.current.spaceKey.isPressed && Time.time < lastGroundedAtTime + jumpHoldDuration)
+        {
+            rb.velocity = Vector2.up * jumpSpeed;
+        }
     }
 
     private void FixedUpdate()

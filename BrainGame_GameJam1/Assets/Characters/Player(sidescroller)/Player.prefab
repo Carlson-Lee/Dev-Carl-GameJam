@@ -241,7 +241,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 3852591537423330908}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b7a1b297cdda5824686130a0f23ba115, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -332,6 +332,8 @@ MonoBehaviour:
   animator: {fileID: 8434058820335725194}
   sr: {fileID: 4589700559352017988}
   playerInput: {fileID: 189822875320936102}
+  jumpHoldDuration: 0.5
+  jumpSpeed: 5
 --- !u!1 &9082074809033539843
 GameObject:
   m_ObjectHideFlags: 0
