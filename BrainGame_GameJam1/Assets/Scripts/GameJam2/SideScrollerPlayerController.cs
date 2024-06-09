@@ -57,7 +57,6 @@ public class SideScrollerPlayerController : MonoBehaviour
     {
         UpdateSpriteDirection();
         UpdateAnimationState();
-
     }
 
     private void FixedUpdate()
