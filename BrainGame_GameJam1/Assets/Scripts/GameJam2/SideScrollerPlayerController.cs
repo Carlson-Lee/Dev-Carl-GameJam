@@ -8,7 +8,7 @@ public class SideScrollerPlayerController : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float movementSpeed;
     [SerializeField] private float jumpForce;
-    [SerializeField] private Vector2 movementInput;
+    [SerializeField] public Vector2 movementInput;
     [SerializeField] private PlayerStates currentState; //Check for current animation needed
 
     [Header("CollisionDetection")]
