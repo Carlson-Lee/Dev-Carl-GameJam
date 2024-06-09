@@ -30,6 +30,7 @@ public class SideScrollerPlayerController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private ResetPlayerPosition resetTrigger;
 
     private void Start()
     {
@@ -57,6 +58,11 @@ public class SideScrollerPlayerController : MonoBehaviour
     {
         UpdateSpriteDirection();
         UpdateAnimationState();
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            RespawnAtCheckpoint();
+        }
     }
 
     private void FixedUpdate()
@@ -185,5 +191,10 @@ public class SideScrollerPlayerController : MonoBehaviour
                 default: break;
             }
         }
+    }
+
+    private void RespawnAtCheckpoint()
+    {
+        transform.position = resetTrigger.respawnPosition;
     }
 }
