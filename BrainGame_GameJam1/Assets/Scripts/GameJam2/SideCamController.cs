@@ -1,3 +1,11 @@
+/*
+ *  File: SideCamController.cs
+ *  Author: Devon
+ *  Purpose: Controls the offset of the camera when moving left/right
+ *  
+ *  Help from: https://www.youtube.com/watch?v=PA5DgZfRsAM modified some code from here for the lookAhead variable
+ */
+
 using UnityEngine;
 
 public class SideCamController : MonoBehaviour

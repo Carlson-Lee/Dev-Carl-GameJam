@@ -1,3 +1,9 @@
+/*
+ *  File: SceneLoader.cs
+ *  Author: Devon
+ *  Purpose: Load a specified scene passed in as a parameter during OnClick events
+ */
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

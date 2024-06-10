@@ -1,48 +1,66 @@
-using System;
+/*
+ *  File: SideScrollerPlayerController.cs
+ *  Author: Devon
+ *  Purpose: Controls aspects ofthe player during gameplay
+ *   - Animations
+ *   - Ground and Wall Detection
+ *   - Wall bounces
+ *   - Jumping
+ *   - Movement
+ *   - Respawning
+ *  
+ *  AI assistance: Some help from ChatGPT in FixedUpdate for the wall collision raycasts
+ */
+
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Interactions;
 
 public class SideScrollerPlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] private float movementSpeed;
-    [SerializeField] private float jumpForce;
-    [SerializeField] public Vector2 movementInput;
+    [SerializeField] private float movementSpeed; //Speed of the player
+    [SerializeField] private float jumpForce; //How high the player can jump
+    [SerializeField] public Vector2 movementInput; //Current keyboard input direction
     [SerializeField] private PlayerStates currentState; //Check for current animation needed
 
     [Header("CollisionDetection")]
-    [SerializeField] private bool isGrounded;
-    [SerializeField] private bool isTouchingWall;
-    [SerializeField] private bool isFalling;
+    [SerializeField] private bool isGrounded; //Check for player standing on ground
+    [SerializeField] private bool isTouchingWall; //Check for player hitting a wall
+    [SerializeField] private bool isFalling; //Check for player falling after jump/wall bounce
     //Walls
-    [SerializeField] public float wallCheckDistance;
-    [SerializeField] private LayerMask wallLayer;
+    [SerializeField] public float wallCheckDistance; //Distance of raycast for wall bounce
+    [SerializeField] private LayerMask wallLayer; //Objects to trigger wall bounce behaviour
     //Ground
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private Vector2 groundCheckSize;
-    [SerializeField] public float groundCheckDistance;
-    [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private float wallPushModifier;
+    [SerializeField] private Transform groundCheck; //Object position for a grounded raycast
+    [SerializeField] private Vector2 groundCheckSize; //Raycast size for ground check detection
+    [SerializeField] public float groundCheckDistance; //Raycast distance from player to current ground object
+    [SerializeField] private LayerMask groundLayer; //Objects to trigger grounded behaviour (i.e jumping)
+    [SerializeField] private float wallPushModifier; //Amount the player gets bounced off the wall
 
     [Header("Components")]
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Animator animator;
+    //Player Objects
+    [SerializeField] private Rigidbody2D rb; 
+    [SerializeField] private Animator animator; 
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private PlayerInput playerInput;
+    //RespawnTrigger count used on final game panel
     [SerializeField] private ResetPlayerPosition resetTrigger;
+    //Manages the end game state of the game
     [SerializeField] private EndGameManager endGameManager;
+
+    /// <summary>
+    /// Instantiates player variables at game start
+    /// </summary>
     private void Start()
     {
+        //Assign components
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         playerInput = GetComponent<PlayerInput>();
+        playerInput.SwitchCurrentActionMap("SideScroller"); // Ensure correct switch to SideScroller action map
 
-        // Switch to SideScroller action map
-        playerInput.SwitchCurrentActionMap("SideScroller");
-
-        //Set all variables
+        //Set all variable default values
         movementSpeed = 1f;
         jumpForce = 10f;
         isGrounded = false;
@@ -54,6 +72,10 @@ public class SideScrollerPlayerController : MonoBehaviour
         groundCheckSize = new Vector2(0.2f, 0.1f);
     }
 
+    /// <summary>
+    /// Update any changes to the sprite (walking, idle, direction)  <br />
+    /// Checks for key press to respawn the player
+    /// </summary>
     private void Update()
     {
         UpdateSpriteDirection();
@@ -65,6 +87,9 @@ public class SideScrollerPlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Performs a ground/wall check during gameplay
+    /// </summary>
     private void FixedUpdate()
     {
         isGrounded = GroundCheck();
@@ -104,15 +129,16 @@ public class SideScrollerPlayerController : MonoBehaviour
         return groundHit != null;
     }
 
-
+    // No longer used but keeping code incase i revert back to 'send messages' input system behaviour
     /// <summary>
     /// Saves the players input direction for movement
     /// </summary>
     /// <param name="movementValue"></param>
     private void OnMove(InputValue movementValue) { movementInput = movementValue.Get<Vector2>(); }
 
+    // No longer used but keeping code incase i revert back to 'send messages' input system behaviour
     /// <summary>
-    /// 
+    /// Checks for jump input and adds force to player rb in upwards direction
     /// </summary>
     /// <param name="jumpValue"></param>
     private void OnJump(InputValue jumpValue)
@@ -123,13 +149,22 @@ public class SideScrollerPlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Invokes a Unity Event to move the player in a Vector2 direction
+    /// </summary>
+    /// <param name="context">Key press for movement (e.g A/D or arrow keys)</param>
     public void Move(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();
     }
 
+    /// <summary>
+    /// Invokes a Unity Event to make the player jump in an upwards direction
+    /// </summary>
+    /// <param name="context">Key press for jumping (e.g W, up arrow, space)</param>
     public void Jump(InputAction.CallbackContext context)
     {
+        //State of the key press
         bool jumpPressed = context.performed;
         bool jumpReleased = context.canceled;
 
@@ -140,7 +175,7 @@ public class SideScrollerPlayerController : MonoBehaviour
 
         if (jumpReleased && rb.velocity.y > 0f)
         {
-            rb.velocity = new Vector2(rb.velocity.x, 1f);
+            rb.velocity = new Vector2(rb.velocity.x, 1f); //Slow down the jump as the player gets higher
         }
     }
 
@@ -193,6 +228,10 @@ public class SideScrollerPlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Moves the player position to a set trigger location  <br />
+    /// Increments a counter to show on endgame panel
+    /// </summary>
     private void RespawnAtCheckpoint()
     {
         endGameManager.respawnCount++;

@@ -1,10 +1,13 @@
+/*
+ *  File: EndLevel.cs
+ *  Author: Devon
+ *  Purpose: Controls triggering of end game panel + raising flag tiles at end of level
+ */
+
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
-using UnityEngine.UI;
 
 public class EndLevel : MonoBehaviour
 {
@@ -15,11 +18,17 @@ public class EndLevel : MonoBehaviour
     private bool playerInTrigger = false;
     private bool flagRaised = false;
 
+    /// <summary>
+    /// Hide the 'flag' tiles the player needs at the end
+    /// </summary>
     void Start()
     {
         flag.enabled = false; //Disable flag from showing on pole
     }
 
+    /// <summary>
+    /// If the player is in the correct trigger and pressing F, raise the flag
+    /// </summary>
     private void Update()
     {
         if (playerInTrigger && !flagRaised && Input.GetKey(KeyCode.F))
@@ -29,20 +38,31 @@ public class EndLevel : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Set bool for raising flag
+    /// </summary>
+    /// <param name="collision">Player collision</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Used to only pickup one item at a time
         if (collision.CompareTag("Player"))
         {
             playerInTrigger = true;
         }
     }
 
+    /// <summary>
+    /// Set bool so player cannot raise flag outside trigger
+    /// </summary>
+    /// <param name="other">Player collision leaving trigger</param>
     private void OnTriggerExit(Collider other)
     {
         playerInTrigger = false;
     }
 
+    /// <summary>
+    /// Show the tilemap with the flag tiles on it
+    /// Start coroutine to countdown the show end summary panel
+    /// </summary>
     private void RaiseFlag()
     {
         flag.enabled = true;
@@ -51,6 +71,7 @@ public class EndLevel : MonoBehaviour
 
     /// <summary>
     /// Starts a countdown the shows an end game panel
+    /// Stops any player movement after game end
     /// </summary>
     /// <returns></returns>
     private IEnumerator EndGame()
