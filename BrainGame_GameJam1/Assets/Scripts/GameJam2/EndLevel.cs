@@ -11,6 +11,7 @@ public class EndLevel : MonoBehaviour
     [SerializeField] private TilemapRenderer flag;
     [SerializeField] private GameObject endGameCanvas;
     [SerializeField] private PlayerInput player;
+    [SerializeField] private EndGameManager endGameManager;
     private bool playerInTrigger = false;
     private bool flagRaised = false;
 
@@ -54,6 +55,7 @@ public class EndLevel : MonoBehaviour
     /// <returns></returns>
     private IEnumerator EndGame()
     {
+        endGameManager.CheckItemsAndShowGameOver();
         yield return new WaitForSeconds(3f);
         endGameCanvas.SetActive(true);
         player.enabled = false;

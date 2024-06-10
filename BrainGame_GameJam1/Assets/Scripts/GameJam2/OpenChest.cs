@@ -58,8 +58,8 @@ public class OpenChest : MonoBehaviour
     }
     private void PickupItem()
     {
-        this.collectible.enabled = false;
-        this.UI_display.enabled = true;
+        collectible.enabled = false;
+        UI_display.enabled = true;
         text.gameObject.SetActive(false);
     }
 }

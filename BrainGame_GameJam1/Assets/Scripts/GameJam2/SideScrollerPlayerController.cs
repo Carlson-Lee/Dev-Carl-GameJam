@@ -31,7 +31,7 @@ public class SideScrollerPlayerController : MonoBehaviour
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private ResetPlayerPosition resetTrigger;
-
+    [SerializeField] private EndGameManager endGameManager;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -59,7 +59,7 @@ public class SideScrollerPlayerController : MonoBehaviour
         UpdateSpriteDirection();
         UpdateAnimationState();
 
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             RespawnAtCheckpoint();
         }
@@ -195,6 +195,7 @@ public class SideScrollerPlayerController : MonoBehaviour
 
     private void RespawnAtCheckpoint()
     {
+        endGameManager.respawnCount++;
         transform.position = resetTrigger.respawnPosition;
     }
 }

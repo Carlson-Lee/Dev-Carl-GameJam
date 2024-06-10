@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class EndGameManager : MonoBehaviour
 {
     [Header("Raw Images")]
-    public RawImage[] rawImagesToCheck = new RawImage[3];
-    public RawImage[] collectibleImages = new RawImage[3];
+    [SerializeField] private RawImage[] UICollectibles = new RawImage[3];
+    [SerializeField] private RawImage[] EndPanelCollectibles = new RawImage[3];
 
     [Header("Text Objects")]
     public TMP_Text timerText;
@@ -14,7 +14,7 @@ public class EndGameManager : MonoBehaviour
     public int respawnCount = 0;
 
     private float timer;
-    private bool gameover;
+    public bool gameover;
 
     void Start()
     {
@@ -32,20 +32,12 @@ public class EndGameManager : MonoBehaviour
 
     public void CheckItemsAndShowGameOver()
     {
-        foreach (var rawImage in rawImagesToCheck)
+        for (int i = 0; i < UICollectibles.Length; i++)
         {
-            if (rawImage.enabled)
+            if (UICollectibles[i].enabled)
             {
-                //enable corresponding collectible images on end panel if collected
-                int index = System.Array.IndexOf(rawImagesToCheck, rawImage);
-                if (index >= 0 && index < collectibleImages.Length)
-                {
-                    collectibleImages[index].enabled = true;
-                }
-                else
-                {
-                    collectibleImages[index].enabled = false;
-                }
+                EndPanelCollectibles[i].enabled = true;
+                Debug.Log("Enabling collectible", EndPanelCollectibles[i]);
             }
         }
         ShowGameOver();
@@ -56,7 +48,9 @@ public class EndGameManager : MonoBehaviour
         gameover = true;
 
         // Update the UI elements
-        timerText.text = timer.ToString("F2");
+        System.TimeSpan timeSpan = System.TimeSpan.FromSeconds(timer);// Format the timer into minutes, seconds, and milliseconds
+        string formattedTime = string.Format("{0:D2}:{1:D2}:{2:D2}", (int)timeSpan.TotalMinutes, timeSpan.Seconds, timeSpan.Milliseconds / 10);
+        timerText.text = formattedTime;
         respawnCountText.text = respawnCount.ToString();
     }
 }

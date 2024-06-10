@@ -5988,8 +5988,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 257215731}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.8286, y: -0.237, z: 0}
-  m_LocalScale: {x: 3.829175, y: 0.43653423, z: 1}
+  m_LocalPosition: {x: 1.3325, y: -0.237, z: 0}
+  m_LocalScale: {x: 4.836414, y: 0.43653423, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 240084218}
@@ -8903,6 +8903,7 @@ MonoBehaviour:
   flag: {fileID: 2108243733}
   endGameCanvas: {fileID: 1932288003}
   player: {fileID: 2046969472}
+  endGameManager: {fileID: 1355147238}
 --- !u!61 &440523994
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9110,6 +9111,50 @@ Transform:
   - {fileID: 1048957950}
   m_Father: {fileID: 1203943463}
   m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &457976795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 457976797}
+  - component: {fileID: 457976796}
+  m_Layer: 0
+  m_Name: SceneLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &457976796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457976795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 310654cc06c7be2418c9148534aaa6bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &457976797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457976795}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &461501012
 GameObject:
@@ -22361,7 +22406,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 720913182}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 457976796}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: SideScrolling_World1
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &720913182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24836,8 +24893,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 938494328}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1678, y: -0.0068, z: 0}
-  m_LocalScale: {x: 4.307368, y: 0.04553585, z: 1}
+  m_LocalPosition: {x: 1.6871, y: -0.0068, z: 0}
+  m_LocalScale: {x: 5.345874, y: 0.04553585, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 510273570}
@@ -99898,17 +99955,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d94193867d4c44b8871fa89a34ab38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rawImagesToCheck:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  collectibleImages:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  UICollectibles:
+  - {fileID: 1100193154}
+  - {fileID: 1120120180}
+  - {fileID: 415684571}
+  EndPanelCollectibles:
+  - {fileID: 1379728709}
+  - {fileID: 1680803924}
+  - {fileID: 1978243678}
   timerText: {fileID: 473431863}
   respawnCountText: {fileID: 900018167}
   respawnCount: 0
+  gameover: 0
 --- !u!4 &1355147239
 Transform:
   m_ObjectHideFlags: 0
@@ -99922,7 +99980,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1358306942
 GameObject:
@@ -100326,7 +100384,7 @@ GameObject:
   - component: {fileID: 1379728710}
   - component: {fileID: 1379728709}
   m_Layer: 5
-  m_Name: Collectible2
+  m_Name: Collectible1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100359,7 +100417,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1379728707}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
@@ -101835,8 +101893,8 @@ RectTransform:
   - {fileID: 12978920}
   - {fileID: 900018166}
   - {fileID: 203911000}
-  - {fileID: 1680803923}
   - {fileID: 1379728708}
+  - {fileID: 1680803923}
   - {fileID: 1978243677}
   - {fileID: 720913180}
   - {fileID: 1567572906}
@@ -107907,7 +107965,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1567572908}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 457976796}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: SideScrolling_01
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1567572908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109063,7 +109133,7 @@ GameObject:
   - component: {fileID: 1680803925}
   - component: {fileID: 1680803924}
   m_Layer: 5
-  m_Name: Collectible1
+  m_Name: Collectible2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109096,7 +109166,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1680803922}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
@@ -110005,6 +110075,10 @@ PrefabInstance:
       propertyPath: resetTrigger
       value: 
       objectReference: {fileID: 2064080248}
+    - target: {fileID: 7058275189692465420, guid: 2e7bfc1ad27da884180aba65550f16b3, type: 3}
+      propertyPath: endGameManager
+      value: 
+      objectReference: {fileID: 1355147238}
     - target: {fileID: 8326748475857716152, guid: 2e7bfc1ad27da884180aba65550f16b3, type: 3}
       propertyPath: m_CropFrame
       value: 0
@@ -113273,7 +113347,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1978243676}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
