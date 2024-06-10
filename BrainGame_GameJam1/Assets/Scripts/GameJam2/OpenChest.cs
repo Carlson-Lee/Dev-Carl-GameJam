@@ -14,6 +14,7 @@ public class OpenChest : MonoBehaviour
     [SerializeField] private SpriteRenderer collectible;
     [SerializeField] private RawImage UI_display;
     private bool playerInTrigger = false;
+    private bool itemPickedUp = false;
 
     void Start()
     {
@@ -24,9 +25,10 @@ public class OpenChest : MonoBehaviour
 
     private void Update()
     {
-        if (playerInTrigger && Input.GetKey(KeyCode.X))
+        if (playerInTrigger && !itemPickedUp && Input.GetKey(KeyCode.X))
         {
             PickupItem();
+            itemPickedUp = true;
         }
     }
 
@@ -40,8 +42,12 @@ public class OpenChest : MonoBehaviour
         
         closedChest.enabled = false;
         openChest.enabled = true;
-        text.gameObject.SetActive(true);
-        collectible.enabled = true;
+
+        if (!itemPickedUp)
+        {
+            text.gameObject.SetActive(true);
+            collectible.enabled = true;
+        }
 
         //Add other behaviour here later for UI collectibles
     }
@@ -54,5 +60,6 @@ public class OpenChest : MonoBehaviour
     {
         this.collectible.enabled = false;
         this.UI_display.enabled = true;
+        text.gameObject.SetActive(false);
     }
 }
