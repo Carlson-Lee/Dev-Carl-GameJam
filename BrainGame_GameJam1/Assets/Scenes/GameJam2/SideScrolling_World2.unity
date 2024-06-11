@@ -85922,7 +85922,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2885351292991910016, guid: 2e7bfc1ad27da884180aba65550f16b3, type: 3}
       propertyPath: orthographic size
-      value: 0.61
+      value: 0.6026667
       objectReference: {fileID: 0}
     - target: {fileID: 2885351292991910016, guid: 2e7bfc1ad27da884180aba65550f16b3, type: 3}
       propertyPath: m_BackGroundColor.b
@@ -85947,6 +85947,10 @@ PrefabInstance:
     - target: {fileID: 3852591537423330908, guid: 2e7bfc1ad27da884180aba65550f16b3, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3852591537423330908, guid: 2e7bfc1ad27da884180aba65550f16b3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7058275189692465420, guid: 2e7bfc1ad27da884180aba65550f16b3, type: 3}
       propertyPath: resetTrigger
