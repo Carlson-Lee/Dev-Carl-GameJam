@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestingScene.unity
     guid: d6b21fc2099089646b8ceda580f377db
+  - enabled: 1
+    path: Assets/Scenes/GameJam2/SideScrolling_World1.unity
+    guid: b758f77f97878224c86bff48509af71a
+  - enabled: 1
+    path: Assets/Scenes/GameJam2/SideScrolling_World2.unity
+    guid: 52333e50f3c6a5b48b7ac341870d403f
   m_configObjects: {}
