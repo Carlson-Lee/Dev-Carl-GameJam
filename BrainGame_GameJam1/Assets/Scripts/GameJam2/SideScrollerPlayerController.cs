@@ -85,6 +85,11 @@ public class SideScrollerPlayerController : MonoBehaviour
         {
             RespawnAtCheckpoint();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     /// <summary>
