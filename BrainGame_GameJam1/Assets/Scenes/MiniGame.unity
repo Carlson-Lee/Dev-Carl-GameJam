@@ -1923,6 +1923,7 @@ GameObject:
   - component: {fileID: 1419459400}
   - component: {fileID: 1419459402}
   - component: {fileID: 1419459401}
+  - component: {fileID: 1419459403}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -1939,8 +1940,8 @@ Transform:
   m_GameObject: {fileID: 1419459399}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1, y: -4.5, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1523786582}
   m_RootOrder: -1
@@ -2031,8 +2032,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 8
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.9811321, g: 0.023139905, b: 0.023139905, a: 1}
+  m_Sprite: {fileID: -6447722072507503168, guid: 10f3cacccb0c4c547be76836eba20664, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2042,6 +2043,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1419459403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419459399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c380cd976e57a4fa45ac15f8fcc416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  rb: {fileID: 1523786580}
+  spriteRenderer: {fileID: 0}
 --- !u!1 &1523786579
 GameObject:
   m_ObjectHideFlags: 0
@@ -2101,6 +2117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   rb: {fileID: 1523786580}
+  spriteRenderer: {fileID: 1419459402}
 --- !u!4 &1523786582
 Transform:
   m_ObjectHideFlags: 0

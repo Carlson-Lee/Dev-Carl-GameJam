@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Side_PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f; // Adjust the player's movement speed
-    public Rigidbody2D rb; // Reference to the player's Rigidbody component
+    public float moveSpeed = 5f;
+    public Rigidbody2D rb;
     public SpriteRenderer spriteRenderer;
 
-    private Vector2 movement; // Stores the player's movement direction
-
+    private Vector2 movement;
 
     void Start()
     {
@@ -22,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
     }
-
 
     void Update()
     {
