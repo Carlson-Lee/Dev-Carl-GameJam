@@ -11,7 +11,7 @@ public class PlatformManager : MonoBehaviour
     public float destroyDistance = 10f;
 
     private float lastSpawnX;
-    private GameObject lastSpawnedPlatform;
+    private List<GameObject> activePlatforms = new List<GameObject>();
     private bool canSpawn = true;
 
     void Start()
@@ -33,9 +33,9 @@ public class PlatformManager : MonoBehaviour
     void SpawnSegment()
     {
         Vector3 spawnPosition = new Vector3(lastSpawnX + segmentWidth, transform.position.y - 5.5f, transform.position.z);
-        Instantiate(platformPrefab, spawnPosition, Quaternion.identity);
+        GameObject newPlatform = Instantiate(platformPrefab, spawnPosition, Quaternion.identity);
+        activePlatforms.Add(newPlatform); // Add to list of active platforms
         lastSpawnX += segmentWidth;
-        lastSpawnedPlatform = platformPrefab;
         canSpawn = false;
         StartCoroutine(WaitForPlayerMove());
     }
@@ -48,13 +48,12 @@ public class PlatformManager : MonoBehaviour
 
     void DestroySegmentsBehind()
     {
-        GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
-
-        foreach (GameObject platform in platforms)
+        for (int i = activePlatforms.Count - 1; i >= 0; i--)
         {
-            if (platform.transform.position.x < playerTransform.position.x - spawnDistance)
+            if (activePlatforms[i].transform.position.x < playerTransform.position.x - destroyDistance)
             {
-                Destroy(platform);
+                Destroy(activePlatforms[i]);
+                activePlatforms.RemoveAt(i);
             }
         }
     }
