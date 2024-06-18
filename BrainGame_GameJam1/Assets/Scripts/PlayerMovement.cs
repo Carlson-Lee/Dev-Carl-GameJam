@@ -10,19 +10,11 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 movement; // Stores the player's movement direction
 
-
     void Start()
     {
-        if (rb == null)
-        {
-            rb = GetComponent<Rigidbody2D>();
-        }
-        if (spriteRenderer == null)
-        {
-            spriteRenderer = GetComponent<SpriteRenderer>();
-        }
+        rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
 
     void Update()
     {
@@ -44,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         // Movement
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        Vector2 newPosition = rb.position + movement * moveSpeed * Time.fixedDeltaTime;
+        rb.MovePosition(newPosition);
     }
 }
+
