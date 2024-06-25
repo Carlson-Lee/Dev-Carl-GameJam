@@ -22,21 +22,27 @@ public class Parallax_2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 Position = MainCamera.transform.position;
-        float Temp = Position.x * (1 - AmountOfParallax);
-        float Distance = Position.x * AmountOfParallax;
+        // Calculate the camera's position
+        float camPosX = MainCamera.transform.position.x;
 
-        Vector3 NewPosition = new Vector3(_startingPos + Distance, transform.position.y, transform.position.z);
+        // Calculate the distance to move the background based on parallax amount
+        float distance = (camPosX - _startingPos) * AmountOfParallax;
 
-        transform.position = NewPosition;
+        // Calculate the new position of the background
+        float newPos = _startingPos + distance;
 
-        if (Temp > _startingPos + (_lengthOfSprite / 2))
-            {
-                _startingPos += _lengthOfSprite;
-            }
-        else if (Temp < _startingPos - (_lengthOfSprite / 2))
-            {
-                _startingPos -= _lengthOfSprite;
-            }
+        // Update the background's position
+        transform.position = new Vector3(newPos, transform.position.y, transform.position.z);
+
+
+        // Check if we need to reposition the starting position of the background
+        if (camPosX > _startingPos + _lengthOfSprite)
+        {
+            _startingPos += _lengthOfSprite;
+        }
+        else if (camPosX < _startingPos - _lengthOfSprite)
+        {
+            _startingPos -= _lengthOfSprite;
+        }
     }
 }

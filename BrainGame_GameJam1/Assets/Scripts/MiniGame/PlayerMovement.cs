@@ -73,4 +73,13 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Jumping");
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
     }
+    private void OnDrawGizmosSelected()
+    {
+        // Visualize ground check radius in scene view
+        if (groundCheck != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(groundCheck.position, 0.1f);
+        }
+    }
 }
