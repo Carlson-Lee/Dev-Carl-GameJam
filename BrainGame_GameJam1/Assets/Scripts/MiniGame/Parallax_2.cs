@@ -45,8 +45,8 @@ public class Parallax_2 : MonoBehaviour
             _startingPosX -= _lengthOfSprite;
         }
         // Debug logs
-        Debug.Log("Background Position: " + transform.position);
-        Debug.Log("Background Rotation: " + transform.rotation);
+        // Debug.Log("Background Position: " + transform.position);
+        // Debug.Log("Background Rotation: " + transform.rotation);
     }
     
 }
