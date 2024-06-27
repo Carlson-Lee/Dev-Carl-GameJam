@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Parallax_2 : MonoBehaviour
 {
-    private float _startingPos; //This is starting position of the sprites.
+    private float _startingPosX; //This is starting position of the sprites.
     private float _lengthOfSprite;    //This is the length of the sprites.
     public float AmountOfParallax;  //This is amount of parallax scroll. 
     public Camera MainCamera;   //Reference of the camera.
@@ -14,7 +14,7 @@ public class Parallax_2 : MonoBehaviour
     void Start()
     {
         //Getting the starting X position of sprite.
-        _startingPos = transform.position.x;    
+        _startingPosX = transform.position.x;    
         //Getting the length of the sprites.
         _lengthOfSprite = GetComponent<SpriteRenderer>().bounds.size.x;
     }
@@ -26,23 +26,27 @@ public class Parallax_2 : MonoBehaviour
         float camPosX = MainCamera.transform.position.x;
 
         // Calculate the distance to move the background based on parallax amount
-        float distance = (camPosX - _startingPos) * AmountOfParallax;
+        float distanceX = (camPosX - _startingPosX) * AmountOfParallax;
 
         // Calculate the new position of the background
-        float newPos = _startingPos + distance;
+        float newPosX = _startingPosX + distanceX;
 
         // Update the background's position
-        transform.position = new Vector3(newPos, transform.position.y, transform.position.z);
+        transform.position = new Vector3(newPosX, transform.position.y, transform.position.z);
 
 
         // Check if we need to reposition the starting position of the background
-        if (camPosX > _startingPos + _lengthOfSprite)
+        if (camPosX > _startingPosX + _lengthOfSprite)
         {
-            _startingPos += _lengthOfSprite;
+            _startingPosX += _lengthOfSprite;
         }
-        else if (camPosX < _startingPos - _lengthOfSprite)
+        else if (camPosX < _startingPosX - _lengthOfSprite)
         {
-            _startingPos -= _lengthOfSprite;
+            _startingPosX -= _lengthOfSprite;
         }
+        // Debug logs
+        Debug.Log("Background Position: " + transform.position);
+        Debug.Log("Background Rotation: " + transform.rotation);
     }
+    
 }
