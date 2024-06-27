@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck; // Position of the ground check object
     public float groundCheckRadius = 0.1f; // Radius for ground check
     public LayerMask platformLayer; // Layer(s) to consider as ground
+    public Animator animator; // Reference to the Animator component
 
     private Vector2 movement; // Stores the player's movement direction
     private bool isGrounded; // Flag to track if the player is grounded
@@ -21,12 +22,16 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
         // Ground check
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, platformLayer);
+        // Update animator parameters
+        animator.SetBool("isGrounded", isGrounded);
+        animator.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
 
         // Input
         if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
@@ -73,6 +78,7 @@ public class PlayerMovement : MonoBehaviour
         // Apply jump force
         Debug.Log("Jumping");
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        animator.SetTrigger("Jump");
     }
     private void OnDrawGizmosSelected()
     {
