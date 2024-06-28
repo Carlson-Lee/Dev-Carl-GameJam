@@ -95,6 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueManager: {fileID: 4584652020610769376}
   dialogueDataStruct: {fileID: 0}
+  dialogueMenuPrefab: {fileID: 0}
   dialogueIndexToTrigger: 0
 --- !u!82 &7574874520564247470
 AudioSource:
@@ -225,7 +226,7 @@ RectTransform:
   m_Children:
   - {fileID: 4496882293528693869}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

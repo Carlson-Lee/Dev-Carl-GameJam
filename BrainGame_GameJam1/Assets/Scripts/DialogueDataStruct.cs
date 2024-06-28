@@ -13,6 +13,23 @@ public class DialogueDataStruct : MonoBehaviour
     }
 
     public Dialogue[] dialogues; //Array to hold all dialogues
+    public Dialogue[] miniGameDialogues; // Array to hold dialogues for the mini-game
+
+    public Dialogue[] GetCurrentDialogues()
+    {
+        // Example: Check current scene or game state and return appropriate dialogues
+        string currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+
+        if (currentSceneName == "MiniGameScene")
+        {
+            return miniGameDialogues;
+        }
+        else
+        {
+            return dialogues;
+        }
+    }
+
 
     void Start()
     {
@@ -46,6 +63,23 @@ public class DialogueDataStruct : MonoBehaviour
                 }
             }
 
+        };
+
+        // Initialize mini-game dialogues
+        miniGameDialogues = new Dialogue[]
+        {
+            // Dialogue for movement instructions
+            new Dialogue
+            {
+                lines = new string[]
+                {
+                    "Welcome to the Mini-Game!",
+                    "Instructions:",
+                    "Use the ↑   ↓   ←   → keys to move around.",
+                    "Double tap ↑ to jump higher",
+                    "Collect 7 coins to exchange your soul."
+                }
+            },
         };
     }
 }

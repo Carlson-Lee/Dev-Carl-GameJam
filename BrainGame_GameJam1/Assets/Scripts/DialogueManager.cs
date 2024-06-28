@@ -13,6 +13,7 @@ public class DialogueManager : MonoBehaviour
 
     private Label dialogueLabel; // Reference to the Label element
     private int currentDialogueIndex = 0; 
+     private DialogueDataStruct.Dialogue[] currentDialogues; // Array to hold current dialogues
     private float typingSpeed = 0.05f; //Typing speed in seconds per character
     private AudioSource audioSource; //Reference to the AudioSource component
      // Flag to track if dialogue is currently being displayed  
@@ -32,10 +33,15 @@ public class DialogueManager : MonoBehaviour
         // Assign audio clip to the AudioSource component
         audioSource.clip = typingSound;
         
-        //display the initial dialogue
+        // Get the current dialogues based on the scene
+        currentDialogues = dialogueData.GetCurrentDialogues();
+        StartDialogue(0);
+    }
+
+    public void StartDialogue(int index)
+    {
+        currentDialogueIndex = index;
         StartCoroutine(DisplayDialogue(currentDialogueIndex));
-
-
     }
 
     public IEnumerator DisplayDialogue(int index)
@@ -82,6 +88,13 @@ public class DialogueManager : MonoBehaviour
         {
             Debug.LogError("Index is out of range.");
         }
+    }
+
+    //Update dialogue text
+    public void ShowDialogue(string message)
+    {
+        UpdateLabel(message);
+        gameObject.SetActive(true); // Show the dialogue menu
     }
 
     // Method to advance to the next dialogue

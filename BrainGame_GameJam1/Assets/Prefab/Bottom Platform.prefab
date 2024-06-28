@@ -33,7 +33,7 @@ Transform:
   - {fileID: 1086202261752189553}
   - {fileID: 3319005961615672416}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &6312802721218793816
 BoxCollider2D:
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 6164766845633112092}
   m_Layer: 3
   m_Name: Bottom
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 3941071641292970810}
   m_Layer: 3
   m_Name: Bottom Right
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: 3243821328785393277}
   m_Layer: 3
   m_Name: Bottom Left
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
