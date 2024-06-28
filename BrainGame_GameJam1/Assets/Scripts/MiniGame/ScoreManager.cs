@@ -7,6 +7,7 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
+    private SceneController sceneController;
 
 
     private int score = 0;
@@ -26,6 +27,8 @@ public class ScoreManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        sceneController = SceneController.Instance;
     }
 
     void Start()
@@ -89,7 +92,7 @@ public class ScoreManager : MonoBehaviour
 
     public void EndGame()
     {
-        Application.Stop();
+        sceneController.LoadMainMenu();
     }
 
 }

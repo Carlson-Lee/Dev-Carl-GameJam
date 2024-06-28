@@ -53,5 +53,10 @@ public class SceneController : MonoBehaviour
         return SceneManager.GetActiveScene().name;
     }
 
-    
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
+
 }
