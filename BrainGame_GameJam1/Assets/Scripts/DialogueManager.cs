@@ -49,7 +49,7 @@ public class DialogueManager : MonoBehaviour
         // Check if the index is within the bounds of the dialogues array
         if (index >= 0 && index < dialogueData.dialogues.Length)
         {
-            DialogueDataStruct.Dialogue dialogue = dialogueData.dialogues[index];
+            DialogueDataStruct.Dialogue dialogue = currentDialogues[index];
             
             // Check if the dialogue is not null
             if (dialogue != null)
@@ -87,6 +87,40 @@ public class DialogueManager : MonoBehaviour
         else
         {
             Debug.LogError("Index is out of range.");
+        }
+    }
+
+    // New method to display a specific dialogue
+    public IEnumerator DisplaySpecificDialogue(DialogueDataStruct.Dialogue dialogue)
+    {
+        // Check if the dialogue is not null
+        if (dialogue != null)
+        {
+            // Clear the dialogue label
+            UpdateLabel("");
+
+            // Play Sound
+            audioSource.Play();
+            isTyping = true;
+
+            // Loop through each character of the dialogue text
+            foreach (string line in dialogue.lines)
+            {
+                foreach (char letter in line)
+                {
+                    dialogueLabel.text += letter;
+                    yield return new WaitForSeconds(typingSpeed);
+                }
+                dialogueLabel.text += "\n";
+                yield return new WaitForSeconds(typingSpeed);
+            }
+
+            audioSource.Stop();
+            isTyping = false;
+        }
+        else
+        {
+            Debug.LogError("Dialogue is null.");
         }
     }
 

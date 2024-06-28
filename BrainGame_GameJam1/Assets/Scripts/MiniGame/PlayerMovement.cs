@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 movement; // Stores the player's movement direction
     private bool isGrounded; // Flag to track if the player is grounded
+    private int jumpsRemaining; //Track remaining jumps
 
 
     void Start()
@@ -23,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        jumpsRemaining = 1;
     }
 
     void Update()
@@ -33,10 +35,13 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("isGrounded", isGrounded);
         animator.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
 
-        // Input
-        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
+        if (isGrounded)
         {
-            Debug.Log("Jump key pressed");
+            jumpsRemaining = 1; // Reset jumps when grounded
+        }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow) && jumpsRemaining > 0)
+        {
             Jump();
         }
 
@@ -79,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Jumping");
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         animator.SetTrigger("Jump");
+        jumpsRemaining--; // Decrease jumps remaining
     }
     private void OnDrawGizmosSelected()
     {

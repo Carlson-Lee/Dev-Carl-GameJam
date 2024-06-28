@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DialogueDataStruct : MonoBehaviour
 {
@@ -14,13 +15,14 @@ public class DialogueDataStruct : MonoBehaviour
 
     public Dialogue[] dialogues; //Array to hold all dialogues
     public Dialogue[] miniGameDialogues; // Array to hold dialogues for the mini-game
+    public Dialogue endGameDialogue;
 
     public Dialogue[] GetCurrentDialogues()
     {
         // Example: Check current scene or game state and return appropriate dialogues
         string currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
-        if (currentSceneName == "MiniGameScene")
+        if (currentSceneName == "MiniGame")
         {
             return miniGameDialogues;
         }
@@ -79,7 +81,15 @@ public class DialogueDataStruct : MonoBehaviour
                     "Double tap ↑ to jump higher",
                     "Collect 7 coins to exchange your soul."
                 }
-            },
+            }
+        };
+
+        endGameDialogue = new Dialogue
+        {
+            lines = new string[]
+            {
+                "You have collected enough coins to exchange for your soul!"
+            }
         };
     }
 }

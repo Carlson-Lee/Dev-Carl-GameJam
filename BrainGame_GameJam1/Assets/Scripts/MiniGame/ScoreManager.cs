@@ -7,9 +7,12 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
-    public TMP_Text scoreText; // Reference to the UI Text element for score
+
     private int score = 0;
+    public int requiredCoins = 7;
+    public TextMeshProUGUI scoreText;
     public DialogueManager dialogueManager;
+    public DialogueDataStruct dialogueDataStruct;
 
     void Awake()
     {
@@ -30,19 +33,39 @@ public class ScoreManager : MonoBehaviour
         {
             Debug.LogError("DialogueManager is not assigned in the ScoreManager!");
         }
+        
+        // Initialize the score display
+        UpdateScoreText();
     }
 
     public void AddScore(int amount)
     {
         score += amount;
-        scoreText.text = "Score: " + score.ToString();
+        UpdateScoreText();
 
-        // Check if score reaches 7
-        if (score >= 7)
+        // Check if score reaches the required number of coins
+        if (score >= requiredCoins)
         {
-            dialogueManager.ShowDialogue("You have collected enough coins to exchange for your soul!");
-            EndGame();
+            ShowEndGameDialogue();
         }
+    }
+
+    void UpdateScoreText()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = "Score: " + score.ToString();
+        }
+        else
+        {
+            Debug.LogError("Score TextMeshProUGUI is not assigned in the ScoreManager!");
+        }
+    }
+
+    void ShowEndGameDialogue()
+    {
+        // Show the end game dialogue
+        StartCoroutine(dialogueManager.DisplaySpecificDialogue(dialogueDataStruct.endGameDialogue));
     }
 
     public void EndGame()
