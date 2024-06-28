@@ -32,7 +32,11 @@ public class DialogueDataStruct : MonoBehaviour
         }
     }
 
-
+    public Dialogue GetEndGameDialogue()
+    {
+        return endGameDialogue;
+    }
+    
     void Start()
     {
         dialogues = new Dialogue[]

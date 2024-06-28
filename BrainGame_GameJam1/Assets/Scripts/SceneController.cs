@@ -52,4 +52,6 @@ public class SceneController : MonoBehaviour
     {
         return SceneManager.GetActiveScene().name;
     }
+
+    
 }

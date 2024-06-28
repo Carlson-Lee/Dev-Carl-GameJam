@@ -114,7 +114,7 @@ public class DialogueManager : MonoBehaviour
                 dialogueLabel.text += "\n";
                 yield return new WaitForSeconds(typingSpeed);
             }
-
+            
             audioSource.Stop();
             isTyping = false;
         }

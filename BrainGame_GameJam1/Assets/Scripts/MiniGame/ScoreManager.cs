@@ -8,9 +8,11 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
 
+
     private int score = 0;
     public int requiredCoins = 7;
     public TextMeshProUGUI scoreText;
+    public GameObject dialogueMenuPrefab;
     public DialogueManager dialogueManager;
     public DialogueDataStruct dialogueDataStruct;
 
@@ -44,10 +46,12 @@ public class ScoreManager : MonoBehaviour
         UpdateScoreText();
 
         // Check if score reaches the required number of coins
-        if (score >= requiredCoins)
+        if (score == requiredCoins)
         {
             ShowEndGameDialogue();
+            EndGame();
         }
+
     }
 
     void UpdateScoreText()
@@ -64,13 +68,28 @@ public class ScoreManager : MonoBehaviour
 
     void ShowEndGameDialogue()
     {
-        // Show the end game dialogue
-        StartCoroutine(dialogueManager.DisplaySpecificDialogue(dialogueDataStruct.endGameDialogue));
+        dialogueMenuPrefab.SetActive(true);
+        if (dialogueManager != null && dialogueDataStruct != null)
+    {
+        DialogueDataStruct.Dialogue endGameDialogue = dialogueDataStruct.GetEndGameDialogue();
+        if (endGameDialogue != null)
+        {
+            StartCoroutine(dialogueManager.DisplaySpecificDialogue(endGameDialogue));
+        }
+        else
+        {
+            Debug.LogError("End game dialogue not found in DialogueDataStruct!");
+        }
+    }
+    else
+    {
+        Debug.LogError("DialogueManager or DialogueDataStruct is not properly assigned!");
+    }
     }
 
     public void EndGame()
     {
-        Application.Quit();
+        Application.Stop();
     }
 
 }
